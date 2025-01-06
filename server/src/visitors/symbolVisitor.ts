@@ -27,7 +27,9 @@ export class SymbolVisitor extends ExplorerScriptVisitor<void> {
     }
 
     const file = singlelineStringLiteral(ctx.STRING_LITERAL().getText());
-    this.symbols.imports.push(new Import(ctx, file));
+    const import_ = new Import(ctx, file);
+    this.symbols.imports.push(import_);
+    this.symbols._itemsByCtx.set(ctx, import_);
   }
 
   visitMacrodef = (ctx: MacrodefContext) => {
@@ -64,6 +66,7 @@ export class SymbolVisitor extends ExplorerScriptVisitor<void> {
     const macro = new Macro(ctx, ident, args, scopedConstants);
     this.symbols.macros.push(macro);
     this.symbols._macrosByName.set(ident, macro);
+    this.symbols._itemsByCtx.set(ctx, macro);
 
     for (let label of labels) {
       // Turns out that Skemple is understandably weird about labels in macros.
@@ -91,6 +94,7 @@ export class SymbolVisitor extends ExplorerScriptVisitor<void> {
     const constant = new UserConstant(ctx, name);
     this.symbols.constants.push(constant);
     this.symbols._constantsByName.set(name, constant);
+    this.symbols._itemsByCtx.set(ctx, constant);
   }
 
   visitCoro_def = (ctx: Coro_defContext) => {
@@ -120,6 +124,7 @@ export class SymbolVisitor extends ExplorerScriptVisitor<void> {
     const coro = new Coroutine(ctx, name, scopedConstants);
     this.symbols.coroutines.push(coro);
     this.symbols._coroutinesByName.set(name, coro);
+    this.symbols._itemsByCtx.set(ctx, coro);
 
     for (let label of labels) {
       label.parent = coro;
@@ -161,6 +166,7 @@ export class SymbolVisitor extends ExplorerScriptVisitor<void> {
     this.diagnostics.push(...diagnostics);
     const routine = new Routine(ctx, id, scopedConstants);
     this.symbols.routines.push(routine);
+    this.symbols._itemsByCtx.set(ctx, routine);
 
     for (let label of labels) {
       label.parent = routine;
@@ -214,6 +220,8 @@ export class SymbolVisitor extends ExplorerScriptVisitor<void> {
     this.diagnostics.push(...diagnostics);
     let routine = new Routine(ctx, id, scopedConstants, target, context);
     this.symbols.routines.push(routine);
+    this.symbols._itemsByCtx.set(ctx, routine);
+
     for (let label of labels) {
       label.parent = routine;
       this.symbols.labels.push(label);

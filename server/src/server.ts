@@ -50,6 +50,7 @@ import { createRequire } from "module";
 import { StaticConstantStore } from './data/constantStore.js';
 import { OpCode } from './data/types.js';
 import { findDefinition } from './definitionProvider.js';
+import { StatementVisitor } from './visitors/statement.js';
 const require = createRequire(import.meta.url);
 export let connection: Connection = require('vscode-languageserver/node').createConnection(ProposedFeatures.all);
 
@@ -140,7 +141,7 @@ connection.onInitialized(async () => {
 
   const workspaceFolders = await getWorkspaceFolders();
   await parseAllExpsFilesOnStartup(workspaceFolders);
-  documents.all().forEach(parseDocumentAndSendDiagnostics);
+  documents.all().forEach(checkDocumentAndSendDiagnostics);
 });
 
 async function getWorkspaceFolders(): Promise<WorkspaceFolder[]> {
@@ -291,7 +292,7 @@ let firstConfigChange = true;
 connection.onDidChangeConfiguration(async (change: DidChangeConfigurationParams) => {
   applyConfigurationChange(change);
   // Re-validate all open text documents
-  documents.all().forEach(parseDocumentAndSendDiagnostics);
+  documents.all().forEach(checkDocumentAndSendDiagnostics);
 
   const workspaceFolders = await getWorkspaceFolders();
   loadedRoms.clear();
@@ -376,7 +377,7 @@ documents.onDidChangeContent(change => {
     clearTimeout(parseTimeout);
   }
   parseTimeout = setTimeout(() => {
-    parseDocumentAndSendDiagnostics(change.document);
+    checkDocumentAndSendDiagnostics(change.document);
   }, 300);
 });
 
@@ -457,9 +458,11 @@ export function getDocumentSymbols(uri: URI): SymbolStore | undefined {
   return undefined;
 }
 
-async function parseDocumentAndSendDiagnostics(doc: TextDocument) {
+async function checkDocumentAndSendDiagnostics(doc: TextDocument) {
   const parsed = await parseDocument(doc);
-  connection.sendDiagnostics({ uri: doc.uri, diagnostics: parsed.diagnostics });
+  const compileDiagnostics = compileCheck(parsed);
+  const allDiagnostics = [...parsed.diagnostics, ...compileDiagnostics];
+  connection.sendDiagnostics({ uri: doc.uri, diagnostics: allDiagnostics });
 }
 
 // Parse a single file on disk, not necessarily open in the editor
@@ -572,6 +575,17 @@ async function parse(uri: string, source: string, keepTree: boolean): Promise<Pa
       scriptFolder: findScriptFolder(uri)
     };
   }
+}
+
+/// Runs additional compile checks on the parsed document
+function compileCheck(doc: ParsedDocument): Diagnostic[] {
+  if (!doc.parseTree) {
+    return []; // Can't check without a parse tree
+  }
+
+  const visitor = new StatementVisitor(doc.localSymbols, doc.allSymbols, getDocumentConstants(doc));
+  visitor.visit(doc.parseTree);
+  return visitor.diagnostics;
 }
 
 async function findDocumentWorkspaceFolder(uri: string): Promise<string | undefined> {

@@ -2,7 +2,7 @@ import { ParserRuleContext } from "antlr4";
 import { Location } from "vscode-languageserver";
 import { findParentRuleContext } from "./parseHelpers.js";
 import { CallContext, Coro_defContext, For_target_defContext, Import_stmtContext, JumpContext, Macro_callContext, MacrodefContext, OperationContext, PrimitiveContext, Simple_defContext, String_valueContext } from "./antlr/ExplorerScriptParser.js";
-import { Coroutine, Macro, Routine, Symbol, SymbolStore, UserConstant } from "./symbols.js";
+import { Coroutine, Macro, resolveScopedConstant, Routine, Symbol, SymbolStore, UserConstant } from "./symbols.js";
 import { ParsedDocument } from "./server.js";
 import { findMacrosFolder, resolveImport } from "./imports.js";
 import { singlelineStringLiteral, stringLiteral } from "./utils.js";
@@ -114,32 +114,6 @@ export function findDefinition(doc: ParsedDocument, context: ParserRuleContext, 
   }
 
   return null;
-}
-
-function resolveScopedConstant(context: ParserRuleContext, itemsByCtx: Map<ParserRuleContext, Symbol>, constantName: string): UserConstant | null {
-  let scope: Macro | Routine | Coroutine | null = null;
-
-  const macroDef = findParentRuleContext(context, MacrodefContext) as MacrodefContext | null;
-  if (macroDef) {
-    scope = itemsByCtx.get(macroDef) as Macro;
-  }
-
-  const routineDef = findParentRuleContext(context, Simple_defContext) as Simple_defContext | null;
-  if (routineDef) {
-    scope = itemsByCtx.get(routineDef) as Routine;
-  }
-
-  const forRoutineDef = findParentRuleContext(context, For_target_defContext) as For_target_defContext | null
-    ?? findParentRuleContext(context, Coro_defContext) as Coro_defContext | null;
-  if (forRoutineDef) {
-    scope = itemsByCtx.get(forRoutineDef) as Coroutine;
-  }
-
-  if (!scope) {
-    return null;
-  }
-
-  return scope.scopedConstants.find(c => c.name === constantName) ?? null;
 }
 
 function resolveSpecialSub(operation: OperationContext, scriptFolder: URI): Location | null {

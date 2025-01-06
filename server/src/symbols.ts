@@ -18,6 +18,7 @@ export class SymbolStore {
   _coroutinesByName: Map<string, Coroutine> = new Map();
   labels: Label[] = [];
   _labelsByName: Map<string, Label> = new Map();
+  _itemsByCtx: Map<ParserRuleContext, Symbol> = new Map();
 
   constructor(public documentUri: string) { }
 
@@ -48,11 +49,16 @@ export class SymbolStore {
 	return this._labelsByName.get(name);
   }
 
+  getItemByCtx(ctx: ParserRuleContext): Symbol | undefined {
+	return this._itemsByCtx.get(ctx);
+  }
+
   // Remove references to the ANTLR parse tree to allow GC to clean up
   removeParseTreeReferences() {
 	for (let symbol of this.allSymbols()) {
 	  symbol.ctx = undefined;
 	}
+	this._itemsByCtx.clear();
   }
 }
 
@@ -122,7 +128,7 @@ export class Routine {
 	this.id = id;
 	this.contextTy = contextTy;
 	this.context = context;
-	this.scopedConstants = scopedConstants
+	this.scopedConstants = scopedConstants;
   }
 }
 
@@ -382,6 +388,32 @@ export function getMacroSignatureInfo(macro: Macro): SignatureInformation {
 	label: buildMacroDetailString(macro),
 	parameters: args
   };
+}
+
+export function resolveScopedConstant(context: ParserRuleContext, itemsByCtx: Map<ParserRuleContext, Symbol>, constantName: string): UserConstant | null {
+  let scope: Macro | Routine | Coroutine | null = null;
+
+  const macroDef = findParentRuleContext(context, MacrodefContext) as MacrodefContext | null;
+  if (macroDef) {
+	scope = itemsByCtx.get(macroDef) as Macro;
+  }
+
+  const routineDef = findParentRuleContext(context, Simple_defContext) as Simple_defContext | null;
+  if (routineDef) {
+	scope = itemsByCtx.get(routineDef) as Routine;
+  }
+
+  const forRoutineDef = findParentRuleContext(context, For_target_defContext) as For_target_defContext | null
+	?? findParentRuleContext(context, Coro_defContext) as Coro_defContext | null;
+  if (forRoutineDef) {
+	scope = itemsByCtx.get(forRoutineDef) as Coroutine;
+  }
+
+  if (!scope) {
+	return null;
+  }
+
+  return scope.scopedConstants.find(c => c.name === constantName) ?? null;
 }
 
 interface SymbolSource {
