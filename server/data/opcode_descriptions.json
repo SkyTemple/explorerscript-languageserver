@@ -1,0 +1,4077 @@
+{
+	"opcodes": [
+		{
+			"args": [],
+			"description": "Does nothing.",
+			"name": "Null"
+		},
+		{
+			"args": [
+				{
+					"description": "An entry in the Level List. This opcode will pull from the Level's Map Background.",
+					"name": "level_id"
+				}
+			],
+			"description": "Sets the Map Background from a Level without changing the chunks from the currently loaded Map Background. Entities such as actors, objects, and performers will not be deleted when this opcode is executed.\n\nThis has very few uses in the game—a notable use is how Wigglytuff's Chamber has its door open, as seen via LEVEL_G01P04A and LEVEL_G01P04A2.",
+			"name": "back_ChangeGround"
+		},
+		{
+			"args": [
+				{
+					"description": "\n# The default state of the Animation Palette.\n# Plays the Animation Palette in a loop.\n# Plays the Animation Palette once.\n# Freezes the Animation Palette at its current frame.\n# Resumes the Animation Palette.",
+					"name": "effect"
+				}
+			],
+			"description": "Performs various effects related to the currently loaded Animation Palettes.",
+			"name": "back_SetBackEffect"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of pixels to shift either:\n\n* The Map Background's Layer 1 and Layer 2 X-axis.\n* The Map Background's Layer 1 X-axis.\n\nWhich one the game performs for a given Level is hardcoded.",
+					"name": "offset0"
+				},
+				{
+					"description": "The number of pixels to shift either:\n\n* The Map Background's Layer 1 and Layer 2 Y-axis.\n* The Map Background's Layer 2 X-axis.\n\nWhich one the game performs for a given Level is hardcoded.",
+					"name": "offset1"
+				}
+			],
+			"description": "Shifts the background by a certain number of pixels, without affecting entities such as actors, objects, or performers. Backgrounds used with this opcode will display a \"loop\" effect, i.e., it has the appearance of scrolling forever.\n\nThis opcode seems to only work for only a few Levels, such as LEVEL_P13P01A, LEVEL_S13P06A, and LEVEL_V03P11A.",
+			"name": "back_SetBackScrollOffset"
+		},
+		{
+			"args": [
+				{
+					"description": "The speed to scroll either:\n\n* The Map Background's Layer 1 and Layer 2 X-axis.\n* The Map Background's Layer 1 X-axis.\n\nWhich one the game performs for a given Level seems to be hardcoded.",
+					"name": "speed0"
+				},
+				{
+					"description": "The speed to scroll either:\n\n* The Map Background's Layer 1 and Layer 2 Y-axis.\n* The Map Background's Layer 2 X-axis.\n\nWhich one the game performs for a given Level seems to be hardcoded.",
+					"name": "speed1"
+				}
+			],
+			"description": "Continuously scrolls the background at a certain speed, without affecting entities such as actors, objects, or performers. Backgrounds used with this opcode will display a \"loop\" effect, i.e., it has the appearance of scrolling forever.\n\nThis opcode seems to only work for only a few Levels, such as LEVEL_P13P01A, LEVEL_S13P06A, and LEVEL_V03P11A.",
+			"name": "back_SetBackScrollSpeed"
+		},
+		{
+			"args": [
+				{
+					"description": "The chapter number displayed for the banner. A value of -1 will be \"Final Chapter\".",
+					"name": "chapter_number"
+				},
+				{
+					"description": "Currently unknown.",
+					"name": "unk1"
+				}
+			],
+			"description": "Displays broken text using the `FONT/banner.bin:FONT/b_pal.bin` font, editable in the Misc. Graphics tab of SkyTemple. This opcode will delete any actors, objects, and performers that are currently loaded.",
+			"name": "back_SetBanner"
+		},
+		{
+			"args": [
+				{
+					"description": "An entry in the Level List. This opcode will pull from the Level's Map Background.",
+					"name": "level"
+				},
+				{
+					"description": "Currently unknown. Typically, the game uses 0 for this parameter, but it seems to have no effect.",
+					"name": "unk1"
+				},
+				{
+					"description": "The pixel position the camera will center the Map Background on its X-axis.",
+					"name": "x"
+				},
+				{
+					"description": "The pixel position the camera will center the Map Background on its Y-axis.",
+					"name": "y"
+				},
+				{
+					"description": "The chapter number displayed for the banner. A value of -1 will be \"Final Chapter\".",
+					"name": "chapter_number"
+				},
+				{
+					"description": "The title of the chapter, e.g., \"A Storm At Sea\" for Chapter 1.",
+					"name": "title"
+				}
+			],
+			"description": "Displays text using the `FONT/banner.bin:FONT/b_pal.bin` font, editable in the Misc. Graphics tab of SkyTemple. This opcode is typically used for chapter introductions, which includes chapter text and a subtitle displayed over a Map Background. This opcode will delete any actors, objects, and performers that are currently loaded.",
+			"name": "back_SetBanner2"
+		},
+		{
+			"args": [
+				{
+					"description": "* Transitions from Layer 2 to Layer 1.\n* Fades in Layer 1 from total darkness.\n* Transitions from Layer 2 to Layer 1.\n* Fades in Layer 1 from total darkness.\n* Transitions from Layer 1 to Layer 2.\n* Fades out Layer 1 to total darkness.\n* Merges Layer 1 onto Layer 2, but fades in Layer 1 from total darkness.\n* Fades in Layer 1 from total darkness.\n* Merges Layer onto Layer 2, but fades out Layer 1 to total darkness.\n* Fades out Layer 1 to total darkness.",
+					"name": "effect"
+				},
+				{
+					"description": "The number of frames used to play a given effect.",
+					"name": "duration"
+				}
+			],
+			"description": "Performs various effects related to the current Map Background's layers across a certain number of frames.",
+			"name": "back_SetEffect"
+		},
+		{
+			"args": [
+				{
+					"description": "The ID of a dungeon, as listed in the Dungeons tab of SkyTemple.",
+					"name": "dungeon_id"
+				},
+				{
+					"description": "Currently unknown. Does not seem to affect much.",
+					"name": "unk1"
+				}
+			],
+			"description": "Displays a specific string using the `FONT/banner.bin:FONT/b_pal.bin</code> font, editable in the Misc. Graphics tab of SkyTemple. The text chosen is defined in Dungeons tab as a dungeon's <code>back_SetDungeonBanner` string. This opcode will delete any actors, objects, and performers that are currently loaded.",
+			"name": "back_SetDungeonBanner"
+		},
+		{
+			"args": [
+				{
+					"description": "An entry in the Level List. This opcode will pull from the Level's Map Background.",
+					"name": "level_id"
+				}
+			],
+			"description": "Sets the Map Background from a Level. Upon using this opcode, the variable `$GROUND_MAP` will be updated to match the ID of the chosen Level. This opcode will delete any actors, objects, and performers that are currently loaded.",
+			"name": "back_SetGround"
+		},
+		{
+			"args": [
+				{
+					"description": "The episode number displayed for the banner. A value of -1 will be \"Final Chapter\".",
+					"name": "episode_number"
+				},
+				{
+					"description": "The title of the episode, e.g., \"Bidoof's Wish\" for Special Episode 1.",
+					"name": "title"
+				}
+			],
+			"description": "Displays text using the `FONT/banner.bin:FONT/b_pal.bin` font, editable in the Misc. Graphics tab of SkyTemple. This opcode is used for Special Episodes 1-3. This opcode plays a short animation of a green line shooting across the screen, followed by text scrolling across the screen horizontally from opposite directions. This opcode will delete any actors, objects, and performers that are currently loaded.",
+			"name": "back_SetSpecialEpisodeBanner"
+		},
+		{
+			"args": [
+				{
+					"description": "The episode number displayed for the banner. A value of -1 will be \"Final Chapter\".",
+					"name": "episode_number"
+				},
+				{
+					"description": "The title of the episode, e.g., \"Bidoof's Wish\" for Special Episode 1.",
+					"name": "title"
+				}
+			],
+			"description": "Displays text using the `FONT/banner_c.bin:FONT/b_pal_r.bin` font, editable in the Misc. Graphics tab of SkyTemple. This opcode is only used for Special Episode 4. This opcode features an elaborate animation featuring hearts and sparkles, along with text scrolling across the screen horizontally from opposite directions. This opcode will delete any actors, objects, and performers that are currently loaded.",
+			"name": "back_SetSpecialEpisodeBanner2"
+		},
+		{
+			"args": [
+				{
+					"description": "The episode number displayed for the banner. A value of -1 will be \"Final Chapter\".",
+					"name": "episode_number"
+				},
+				{
+					"description": "The title of the episode, e.g., \"Bidoof's Wish\" for Special Episode 1.",
+					"name": "title"
+				}
+			],
+			"description": "Displays text using the `FONT/banner.bin:FONT/b_pal.bin</code> font, editable in the Misc. Graphics tab of SkyTemple. This opcode is only used for Special Episode 5. This opcode features no animation, but the end result is similar to the opcode <code>back_SetSpecialEpisodeBanner`. This opcode will delete any actors, objects, and performers that are currently loaded.",
+			"name": "back_SetSpecialEpisodeBanner3"
+		},
+		{
+			"args": [
+				{
+					"description": "The Y-axis pixel position of the title.",
+					"name": "y"
+				},
+				{
+					"description": "The title displayed on the Touch Screen.",
+					"name": "title"
+				}
+			],
+			"description": "Displays user-defined text using the `FONT/banner.bin:FONT/b_pal.bin` font, editable in the Misc. Graphics tab of SkyTemple. This opcode will delete any actors, objects, and performers that are currently loaded.",
+			"name": "back_SetTitleBanner"
+		},
+		{
+			"args": [
+				{
+					"description": "Values of 0 and below mean no weather effect is to be displayed.\n\n# Dark, unmoving clouds.\n# Dark, unmoving clouds.\n# Clouds.\n# No weather.\n# Clouds.\n# Unknown; seems to either softlock the game or drastically change the current Map Background.\n# Fog.\n# No weather.\n# Unknown; does not seem to have a visible effect, but it loads something into memory.\n# Unknown; seems to either softlock the game or drastically change the current Map Background.\n# Purple smog.",
+					"name": "weather_id"
+				}
+			],
+			"description": "Displays a weather effect that overlays the current Map Background.",
+			"name": "back_SetWeather"
+		},
+		{
+			"args": [
+				{
+					"description": "Currently unknown.",
+					"name": "unk0"
+				}
+			],
+			"description": "Currently unknown. The only values this opcode accepts seems to be 1, 2, and 3. Its only known use is in V00P02/m01a04a.ssb, which is a test script used by the developers.",
+			"name": "back_SetWeatherEffect"
+		},
+		{
+			"args": [
+				{
+					"description": "Currently unknown.",
+					"name": "unk0"
+				},
+				{
+					"description": "Currently unknown.",
+					"name": "unk1"
+				}
+			],
+			"description": "Currently unknown. This opcode is not used in the base game.",
+			"name": "back_SetWeatherScrollOffset"
+		},
+		{
+			"args": [
+				{
+					"description": "Currently unknown.",
+					"name": "unk0"
+				},
+				{
+					"description": "Currently unknown.",
+					"name": "unk1"
+				}
+			],
+			"description": "Currently unknown. This opcode is not used in the base game.",
+			"name": "back_SetWeatherScrollSpeed"
+		},
+		{
+			"args": [
+				{
+					"description": "\n# The default state of the Animation Palette.\n# Plays the Animation Palette in a loop.\n# Plays the Animation Palette once.\n# Freezes the Animation Palette at its current frame.\n# Resumes the Animation Palette.",
+					"name": "effect_id"
+				}
+			],
+			"description": "The same as `back_SetBackEffect`, but for the Top Screen.",
+			"name": "back2_SetBackEffect"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of pixels to shift either:\n\n* The Map Background's Layer 1 and Layer 2 X-axis.\n* The Map Background's Layer 1 X-axis.\n\nWhich one the game performs for a given Level seems to be hardcoded.",
+					"name": "offset0"
+				},
+				{
+					"description": "The number of pixels to shift either:\n\n* The Map Background's Layer 1 and Layer 2 Y-axis.\n* The Map Background's Layer 2 X-axis.\n\nWhich one the game performs for a given Level seems to be hardcoded.",
+					"name": "offset1"
+				}
+			],
+			"description": "The same as `back_SetBackScrollOffset`, but for the Top Screen.",
+			"name": "back2_SetBackScrollOffset"
+		},
+		{
+			"args": [
+				{
+					"description": "The speed to scroll either:\n\n* The Map Background's Layer 1 and Layer 2 X-axis.\n* The Map Background's Layer 1 X-axis.\n\nWhich one the game performs for a given Level seems to be hardcoded.",
+					"name": "speed0"
+				},
+				{
+					"description": "The speed to scroll either:\n\n* The Map Background's Layer 1 and Layer 2 Y-axis.\n* The Map Background's Layer 2 X-axis.\n\nWhich one the game performs for a given Level seems to be hardcoded.",
+					"name": "speed1"
+				}
+			],
+			"description": "The same as `back_SetBackScrollSpeed`, but for the Top Screen.",
+			"name": "back2_SetBackScrollSpeed"
+		},
+		{
+			"args": [
+				{
+					"description": "Currently unknown.",
+					"name": "unk0"
+				},
+				{
+					"description": "Currently unknown.",
+					"name": "unk1"
+				}
+			],
+			"description": "Currently unknown. This opcode is not used in the base game.",
+			"name": "back2_SetData"
+		},
+		{
+			"args": [
+				{
+					"description": "* Transitions from Layer 2 to Layer 1.\n* Fades in Layer 1 from total darkness.\n* Transitions from Layer 2 to Layer 1.\n* Fades in Layer 1 from total darkness.\n* Transitions from Layer 1 to Layer 2.\n* Fades out Layer 1 to total darkness.\n* Merges Layer 1 onto Layer 2, but fades in Layer 1 from total darkness.\n* Fades in Layer 1 from total darkness.\n* Merges Layer onto Layer 2, but fades out Layer 1 to total darkness.\n* Fades out Layer 1 to total darkness.",
+					"name": "effect"
+				},
+				{
+					"description": "The number of frames used to play a given effect.",
+					"name": "duration"
+				}
+			],
+			"description": "The same as `back_SetEffect`, but for the Top Screen.",
+			"name": "back2_SetEffect"
+		},
+		{
+			"args": [
+				{
+					"description": "An entry in the Level List. This opcode will pull from the Level's Map Background.",
+					"name": "level_id"
+				}
+			],
+			"description": "Mostly the same as `back_SetGround</code>, but for the Top Screen. This opcode only works if <code>back2_SetMode(4);` is used prior to this opcode.",
+			"name": "back2_SetGround"
+		},
+		{
+			"args": [
+				{
+					"description": "A value of 0 is no mode. A negative value seems to set the Top Screen to the overworld's current Top Screen setting.\n\n# Fades out the Top Screen.\n# Team Stats.\n# The Map Background S01P01A with the hero idling on a World Map Marker.\n# Allows for the Top Screen to display a Map Background from a Level using the `back2_SetGround</code> opcode.\n# Splits the Map Background used in the Level defined by <code>back_SetGround</code> equally between the Top and Touch Screen.\n#Splits the Map Background used in the Level defined by <code>back_SetGround` between the Top and Touch Screen.",
+					"name": "mode"
+				}
+			],
+			"description": "Determines a hardcoded status of the Top Screen.",
+			"name": "back2_SetMode"
+		},
+		{
+			"args": [
+				{
+					"description": "Currently unknown.",
+					"name": "unk0"
+				},
+				{
+					"description": "Currently unknown.",
+					"name": "unk1"
+				},
+				{
+					"description": "Currently unknown.",
+					"name": "unk2"
+				}
+			],
+			"description": "Currently unknown.",
+			"name": "back2_SetSpecialActing"
+		},
+		{
+			"args": [
+				{
+					"description": "Values of 0 and below mean no weather effect is to be displayed.\n\n# Dark, unmoving clouds.\n# Dark, unmoving clouds.\n# Clouds.\n# No weather.\n# Clouds.\n# Unknown; seems to either softlock the game or drastically change the current Map Background.\n# Fog.\n# No weather.\n# Unknown; does not seem to have a visible effect, but it loads something into memory.\n# Unknown; seems to either softlock the game or drastically change the current Map Background.\n# Purple smog.",
+					"name": "weather_id"
+				}
+			],
+			"description": "The same as `back_SetWeather`, but for the Top Screen.",
+			"name": "back2_SetWeather"
+		},
+		{
+			"args": [
+				{
+					"description": "Currently unknown.",
+					"name": "unk0"
+				}
+			],
+			"description": "Currently unknown. Potentially has similar functionality as `back_SetWeatherEffect`, but for the Top Screen.",
+			"name": "back2_SetWeatherEffect"
+		},
+		{
+			"args": [
+				{
+					"description": "Currently unknown.",
+					"name": "unk0"
+				},
+				{
+					"description": "Currently unknown.",
+					"name": "unk1"
+				}
+			],
+			"description": "Currently unknown. Potentially has similar functionality as `back_SetWeatherScrollOffset`, but for the Top Screen.",
+			"name": "back2_SetWeatherScrollOffset"
+		},
+		{
+			"args": [
+				{
+					"description": "Currently unknown.",
+					"name": "unk0"
+				},
+				{
+					"description": "Currently unknown.",
+					"name": "unk1"
+				}
+			],
+			"description": "Currently unknown. Potentially has similar functionality as `back_SetWeatherScrollSpeed`, but for the Top Screen.",
+			"name": "back2_SetWeatherScrollSpeed"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of frames used to fade out and silence a given BGM.",
+					"name": "duration"
+				}
+			],
+			"description": "Fades out the BGM that is currently playing over a certain period of time on the first BGM track.",
+			"name": "bgm_FadeOut"
+		},
+		{
+			"args": [
+				{
+					"description": "A music track defined in SOUND/BGM of the ROM.",
+					"name": "bgm_id"
+				}
+			],
+			"description": "Instantly plays a BGM on the first BGM track.",
+			"name": "bgm_Play"
+		},
+		{
+			"args": [
+				{
+					"description": "A music track defined in SOUND/BGM of the ROM.",
+					"name": "bgm_id"
+				},
+				{
+					"description": "The number of frames used to fade in the BGM.",
+					"name": "duration"
+				},
+				{
+					"description": "The volume that the BGM will play at. It has a maximum of 256 and a minimum of 0.",
+					"name": "volume"
+				}
+			],
+			"description": "Starts playing a BGM over a certain period of time and at a certain volume on the first BGM track.",
+			"name": "bgm_PlayFadeIn"
+		},
+		{
+			"args": [],
+			"description": "Instantly stops the BGM that is currently playing on the first BGM track.",
+			"name": "bgm_Stop"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of frames used to change the BGM's volume.",
+					"name": "duration"
+				},
+				{
+					"description": "The volume that the BGM will play at. It has a maximum of 256 and a minimum of 0.",
+					"name": "volume"
+				}
+			],
+			"description": "Changes the volume of the BGM that is currently playing on the first BGM track.",
+			"name": "bgm_ChangeVolume"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of frames used to fade out and silence a given BGM.",
+					"name": "duration"
+				}
+			],
+			"description": "Fades out the BGM that is currently playing over a certain period of time on the second BGM track.",
+			"name": "bgm2_FadeOut"
+		},
+		{
+			"args": [
+				{
+					"description": "A music track defined in SOUND/BGM of the ROM.",
+					"name": "bgm_id"
+				}
+			],
+			"description": "Instantly plays a BGM on the second BGM track.",
+			"name": "bgm2_Play"
+		},
+		{
+			"args": [
+				{
+					"description": "A music track defined in SOUND/BGM of the ROM.",
+					"name": "bgm_id"
+				},
+				{
+					"description": "The number of frames used to fade in the BGM.",
+					"name": "duration"
+				},
+				{
+					"description": "The volume that the BGM will play at. It has a maximum of 256 and a minimum of 0.",
+					"name": "volume"
+				}
+			],
+			"description": "Starts playing a BGM over a certain period of time and at a certain volume on the second BGM track.",
+			"name": "bgm2_PlayFadeIn"
+		},
+		{
+			"args": [],
+			"description": "Instantly stops the BGM that is currently playing on the second BGM track.",
+			"name": "bgm2_Stop"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of frames to change the BGM's volume.",
+					"name": "duration"
+				},
+				{
+					"description": "The volume that the BGM will play at. It has a maximum of 256 and a minimum of 0.",
+					"name": "volume"
+				}
+			],
+			"description": "Changes the volume of the BGM that is currently playing on the second BGM track.",
+			"name": "bgm2_ChangeVolume"
+		},
+		{
+			"args": [
+				{
+					"description": "One of the 701 possible Unionall Coroutines.",
+					"name": "coro_id"
+				}
+			],
+			"description": "Jumps to the specified Unionall Coroutine, runs its code, and returns to the line of code in which this opcode was used (only if `return;` was used in the Coroutine). This opcode can be used in any script, no matter the type (Common, Enter, Acting, or Sub).\n\nIf used in the context of an actor/object/performer, this should not be used in with-statements.",
+			"name": "CallCommon"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				}
+			],
+			"description": "Moves the camera toward an active Type 1 actor (e.g., ACTOR_PLAYER) without restricting the angles used.",
+			"name": "camera_Move2Default"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				}
+			],
+			"description": "Moves the camera toward a specific entity's position (i.e., an actor, object, or performer) without restricting the angles used.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "camera_Move2MyPosition"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				}
+			],
+			"description": "Moves the camera toward a specific entity (i.e., an actor, object, or performer) without restricting the angles used.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "camera_Move2Myself"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of parameters to read from this opcode.",
+					"name": "num_parameters"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.\nThis parameter may be repeated multiple times.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "Moves the camera to one or more Position Marks without restricting the angles used.",
+			"name": "camera_Move2PositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "Moves the camera to a Position Mark without restricting the angles used.",
+			"name": "camera_Move2PositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "Supposedly movement speed based off of similar opcodes, but does not seem to affect much.",
+					"name": "speed"
+				}
+			],
+			"description": "Moves the camera toward an active Type 1 actor (e.g., ACTOR_PLAYER) in a rapid, strange motion.",
+			"name": "camera_Move3Default"
+		},
+		{
+			"args": [
+				{
+					"description": "Supposedly movement speed based off of similar opcodes, but does not seem to affect much.",
+					"name": "speed"
+				}
+			],
+			"description": "Moves the camera toward a specific entity's position (i.e., an actor, object, or performer) in a rapid, strange motion.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "camera_Move3MyPosition"
+		},
+		{
+			"args": [
+				{
+					"description": "Supposedly movement speed based off of similar opcodes, but does not seem to affect much.",
+					"name": "speed"
+				}
+			],
+			"description": "Moves the camera toward a specific entity (i.e., an actor, object, or performer) in a rapid, strange motion.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "camera_Move3Myself"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of parameters to read from this opcode.",
+					"name": "num_parameters"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.\nThis parameter may be repeated multiple times.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "Moves the camera to one or more Position Marks in a rapid, strange motion.",
+			"name": "camera_Move3PositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "Supposedly movement speed based off of similar opcodes, but does not seem to affect much.",
+					"name": "speed"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "Moves the camera to a Position Mark without restricting the angles used.",
+			"name": "camera_Move3PositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				}
+			],
+			"description": "Moves the camera toward an active Type 1 actor (e.g., ACTOR_PLAYER) while restricting movement by eight angles—as if movement was performed using the D-Pad.",
+			"name": "camera_MoveDefault"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				}
+			],
+			"description": "Moves the camera toward a specific entity's position (i.e., an actor, object, or performer) while restricting movement by eight angles—as if movement was performed using the D-Pad.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "camera_MoveMyPosition"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				}
+			],
+			"description": "Moves the camera toward a specific entity (i.e., an actor, object, or performer) while restricting movement by eight angles—as if movement was performed using the D-Pad.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "camera_MoveMyself"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of parameters to read from this opcode.",
+					"name": "num_parameters"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.\nThis parameter may be repeated multiple times.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "Moves the camera to one or more Position Marks while restricting movement by eight angles—as if movement was performed using the D-Pad.",
+			"name": "camera_MovePositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "Moves the camera to a Position Mark while restricting movement by eight angles—as if movement was performed using the D-Pad.",
+			"name": "camera_MovePositionMark"
+		},
+		{
+			"args": [],
+			"description": "Instantly sets the camera to a Type 1 actor (e.g., ACTOR_PLAYER).",
+			"name": "camera_SetDefault"
+		},
+		{
+			"args": [
+				{
+					"description": "Values of 0 or 3+ mean the camera will not shake.\n\n# Erratic, jerky shaking.\n# Subdued, smoother shaking.",
+					"name": "mode"
+				},
+				{
+					"description": "The intensity of the shake. Higher values will result in a more intense shake.",
+					"name": "intensity"
+				},
+				{
+					"description": "Movement speed. Higher values result in a slower speed.",
+					"name": "speed"
+				}
+			],
+			"description": "Continuously shakes the camera at specified intensities. Entities will be affected by the camera shaking, but not textboxes and portraits. The camera will continue to shake even if it is moved using another opcode.",
+			"name": "camera_SetEffect"
+		},
+		{
+			"args": [],
+			"description": "Instantly sets the camera toward a specific entity's position (i.e., an actor, object, or performer).\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "camera_SetMyPosition"
+		},
+		{
+			"args": [],
+			"description": "Instantly sets the camera to a specific entity (i.e., an actor, object, or performer). Once performed, the camera will now follow the entity wherever it moves.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "camera_SetMyself"
+		},
+		{
+			"args": [
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "Instantly sets the camera to a Position Mark.",
+			"name": "camera_SetPositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				}
+			],
+			"description": "The same as `camera_Move2Default`, but for the Top Screen.",
+			"name": "camera2_Move2Default"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				}
+			],
+			"description": "The same as `camera_Move2MyPosition`, but for the Top Screen.",
+			"name": "camera2_Move2MyPosition"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				}
+			],
+			"description": "The same as `camera_Move2Myself`, but for the Top Screen.",
+			"name": "camera2_Move2Myself"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of parameters to read from this opcode.",
+					"name": "num_parameters"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.\nThis parameter may be repeated multiple times.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "The same as `camera_Move2PositionMark`, but for the Top Screen.",
+			"name": "camera2_Move2PositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "The same as `camera_Move2PositionMark`, but for the Top Screen.",
+			"name": "camera2_Move2PositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "Supposedly movement speed based off of similar opcodes, but does not seem to affect much.",
+					"name": "speed"
+				}
+			],
+			"description": "The same as `camera_Move3Default`, but for the Top Screen.",
+			"name": "camera2_Move3Default"
+		},
+		{
+			"args": [
+				{
+					"description": "Supposedly movement speed based off of similar opcodes, but does not seem to affect much.",
+					"name": "speed"
+				}
+			],
+			"description": "The same as `camera_Move3MyPosition`, but for the Top Screen.",
+			"name": "camera2_Move3MyPosition"
+		},
+		{
+			"args": [
+				{
+					"description": "Supposedly movement speed based off of similar opcodes, but does not seem to affect much.",
+					"name": "speed"
+				}
+			],
+			"description": "The same as `camera_Move3Myself`, but for the Top Screen.",
+			"name": "camera2_Move3Myself"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of parameters to read from this opcode.",
+					"name": "num_parameters"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.\nThis parameter may be repeated multiple times.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "The same as `camera_Move3PositionMark`, but for the Top Screen.",
+			"name": "camera2_Move3PositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "Supposedly movement speed based off of similar opcodes, but does not seem to affect much.",
+					"name": "speed"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "The same as `camera_Move3PositionMark`, but for the Top Screen.",
+			"name": "camera2_Move3PositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				}
+			],
+			"description": "The same as `camera_MoveDefault`, but for the Top Screen.",
+			"name": "camera2_MoveDefault"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				}
+			],
+			"description": "The same as `camera_MoveMyPosition`, but for the Top Screen.",
+			"name": "camera2_MoveMyPosition"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				}
+			],
+			"description": "The same as `camera_MoveMyself`, but for the Top Screen.",
+			"name": "camera2_MoveMyself"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of parameters to read from this opcode.",
+					"name": "num_parameters"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.\nThis parameter may be repeated multiple times.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "The same as `camera_MovePositionMark`, but for the Top Screen.",
+			"name": "camera2_MovePositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "The same as `camera_MovePositionMark`, but for the Top Screen.",
+			"name": "camera2_MovePositionMark"
+		},
+		{
+			"args": [],
+			"description": "The same as `camera_SetDefault`, but for the Top Screen.",
+			"name": "camera2_SetDefault"
+		},
+		{
+			"args": [
+				{
+					"description": "Values of 0 or 3+ mean the camera will not shake.\n\n# Erratic, jerky shaking.\n# Subdued, smoother shaking.",
+					"name": "mode"
+				},
+				{
+					"description": "The intensity of the shake. Higher values will result in a more intense shake.",
+					"name": "intensity"
+				},
+				{
+					"description": "Movement speed. Higher values result in a slower speed.",
+					"name": "speed"
+				}
+			],
+			"description": "The same as `camera_SetEffect`, but for the Top Screen.",
+			"name": "camera2_SetEffect"
+		},
+		{
+			"args": [],
+			"description": "The same as `camera_SetMyPosition`, but for the Top Screen.",
+			"name": "camera2_SetMyPosition"
+		},
+		{
+			"args": [],
+			"description": "The same as `camera_SetMyself`, but for the Top Screen.",
+			"name": "camera2_SetMyself"
+		},
+		{
+			"args": [
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.\nThis parameter may be repeated multiple times.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "The same as `camera_SetPositionMark`, but for the Top Screen.",
+			"name": "camera2_SetPositionMark"
+		},
+		{
+			"args": [],
+			"description": "Reverses the effects of the opcode `CancelRecoverCommon`, i.e., disallows the game from reloading Unionall at a Coroutine by pressing the Start button.",
+			"name": "CancelCut"
+		},
+		{
+			"args": [
+				{
+					"description": "One of the 701 possible Unionall Coroutines.",
+					"name": "coro_id"
+				}
+			],
+			"description": "Allows reloading Unionall at a specified Coroutine by pressing the Start button. This can be done in a cutscene and the overworld.\n\nOnce the Start button is pressed, the game will stop the current script, fade out the entire screen, and reload Unionall and begin running code at the specified Coroutine.",
+			"name": "CancelRecoverCommon"
+		},
+		{
+			"args": [
+				{
+					"description": "Currently unknown.",
+					"name": "unk0"
+				}
+			],
+			"description": "Does nothing in the final game.",
+			"name": "debug_Assert"
+		},
+		{
+			"args": [
+				{
+					"description": "A string to be printed to the Debug Log.",
+					"name": "txt"
+				}
+			],
+			"description": "Does nothing in the final game.\n\nIf the script is running using SkyTemple's debugger and the \"Script Debug\" checkbox is ticked, the specified string will be printed to the Debug Log.",
+			"name": "debug_Print"
+		},
+		{
+			"args": [
+				{
+					"description": "One of the 115 possible script variables. Indexed variables are not encouraged to use, since the Debug Log will only read from the first index.",
+					"name": "var"
+				},
+				{
+					"description": "A string to be printed to the Debug Log.",
+					"name": "txt"
+				}
+			],
+			"description": "Does nothing in the final game.\n\nIf the script is running using SkyTemple's debugger and the \"Script Debug\" checkbox is ticked, the specified string will be printed to the Debug Log, along with the value of the specified script variable.",
+			"name": "debug_PrintFlag"
+		},
+		{
+			"args": [
+				{
+					"description": "One of the 115 possible script variables. A two-indexed variable (e.g., `\nPOSITION_` script variables, ranged from 0-2 (inclusive).",
+					"name": "index"
+				}
+			],
+			"description": "Sets various attributes of an entity (i.e., an actor, object, or performer) to the values of all indexed `\nGROUND_ENTER</code>: This opcode's ''level_id_enter'' parameter.\n* <code>\nGROUND_GETOUT</code>: The value of <code>\nGROUND_MAP</code>: The Level ID used to display the Map Background.\n* <code>\nGROUND_START_MODE</code>: Set to 3.\n\nIn the base game, using this opcode allows for transitioning between Levels in the Overworld, as the game will eventually run the <code>supervision_ExecuteEnter` opcode.",
+			"name": "main_EnterGround"
+		},
+		{
+			"args": [
+				{
+					"description": "An entry in the Level List. Ideally, this opcode would load the specified Level's Enter00 script.",
+					"name": "level_id_enter"
+				},
+				{
+					"description": "The number of frames used to fade out the screens.",
+					"name": "duration"
+				}
+			],
+			"description": "An entry in the Level List. Used to update `\nGROUND_ENTER</code>: This opcode's ''level_id_enter'' parameter.\n* <code>\nGROUND_GETOUT</code>: The value of <code>\nGROUND_MAP</code>: The Level ID used to display the Map Background.\n* <code>\nGROUND_START_MODE</code>: Set to 3.\n\nIn the base game, using this opcode allows for transitioning between Levels in the Overworld, as the game will eventually run the <code>supervision_ExecuteEnter` opcode.",
+			"name": "main_EnterGroundMulti"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of frames used to fade out the screens.",
+					"name": "duration"
+				}
+			],
+			"description": "Exits ground mode and begins dungeon mode while taking an SOS Mail. Dungeon selection seems to be determined by the SOS Mail chosen via `message_Menu(MENU_S_O_S_MAIL_PICKER);`.",
+			"name": "main_EnterRescueUser"
+		},
+		{
+			"args": [
+				{
+					"description": "Most modes are not known, but:\n\n* 32767 opens the generic dojo selection menu\n* 251 goes to the Coroutine CORO_GOTO_TRAINING_DUNGEON, which later stops the current script to reload Unionall starting from the Coroutine CORO_ENTER_TRAINING_DUNGEON.",
+					"name": "mode"
+				},
+				{
+					"description": "Currently unknown.",
+					"name": "unk1"
+				}
+			],
+			"description": "Performs various functions related to entering a dungeon using Marowak Dojo.",
+			"name": "main_EnterTraining"
+		},
+		{
+			"args": [
+				{
+					"description": "Most modes are not known, but:\n\n* 32767 opens a dojo selection menu that only involves Final Maze.\n* 251 goes to the Coroutine CORO_GOTO_TRAINING_DUNGEON, which later stops the current script to reload Unionall starting from the Coroutine CORO_ENTER_TRAINING_DUNGEON.",
+					"name": "mode"
+				},
+				{
+					"description": "Currently unknown.",
+					"name": "unk1"
+				}
+			],
+			"description": "Performs various functions related to entering a dungeon using Marowak Dojo's Final Maze.",
+			"name": "main_EnterTraining2"
+		},
+		{
+			"args": [
+				{
+					"description": "An entry in the Level List.",
+					"name": "level_id"
+				}
+			],
+			"description": "Updates the following variables' values to be this opcode's ''level_id'' parameter:\n\n* `\nGROUND_GETOUT`",
+			"name": "main_SetGround"
+		},
+		{
+			"args": [
+				{
+					"description": "A sound effect defined in SOUND/ME of the ROM.",
+					"name": "me_id"
+				}
+			],
+			"description": "Instantly plays a special [[sound effect]] that can seamlessly interrupt any BGM tracks that are currently playing.",
+			"name": "me_Play"
+		},
+		{
+			"args": [],
+			"description": "Instantly stops the currently-playing special [[sound effect]] called with `me_Play`.",
+			"name": "me_Stop"
+		},
+		{
+			"args": [],
+			"description": "Suspends the current routine and allows for closing an active textbox (and portrait, if active) set by one of the following opcodes:\n\n* `message_ImitationSound`\n* `message_Mail`\n* `message_Monologue`\n* `message_Notice`\n* `message_SpecialTalk`\n* `message_Talk`\n\nBy pressing the A Button, B Button, or tapping the textbox via the Touch Screen. Once the textbox is closed, the current routine resumes.",
+			"name": "message_Close"
+		},
+		{
+			"args": [],
+			"description": "Instantly closes an active textbox (and portrait, if active) once the game finishes displaying a string set by one of the following opcodes:\n\n* `message_ImitationSound`\n* `message_Mail`\n* `message_Monologue`\n* `message_Notice`\n* `message_SpecialTalk`\n* `message_Talk`",
+			"name": "message_CloseEnforce"
+		},
+		{
+			"args": [
+				{
+					"description": "Text to be displayed on the Touch Screen.",
+					"name": "txt"
+				}
+			],
+			"description": "Displays the string defined in the ''txt'' parameter centered in the middle of the Touch Screen. The string will appear without any frame defined in `FONT/frameX.wte` (as seen in the Misc. Graphics tab of SkyTemple). This opcode does not need `message_Close` to suspend the routine.\n\nThis opcode does not support displaying a portrait. No sound will emit from the text scrolling.",
+			"name": "message_Explanation"
+		},
+		{
+			"args": [
+				{
+					"description": "The offset to shift the portrait box across the X-axis.",
+					"name": "x"
+				},
+				{
+					"description": "The offset to shift the portrait box across the Y-axis.",
+					"name": "y"
+				}
+			],
+			"description": "Offsets the active portrait in pixels by multiples of 8.",
+			"name": "message_FacePositionOffset"
+		},
+		{
+			"args": [
+				{
+					"description": "Text to be displayed on the Touch Screen.",
+					"name": "txt"
+				}
+			],
+			"description": "Displays the string defined in the ''txt'' parameter at the bottom of the Touch Screen. The string will appear surrounded by a player-chosen frame defined in `FONT/frameX.wte` (as seen in the Misc. Graphics tab of SkyTemple).\n\nThis opcode does not support displaying a portrait. No sound will emit from the text scrolling.",
+			"name": "message_ImitationSound"
+		},
+		{
+			"args": [],
+			"description": "If an active textbox has finished displaying its string and was created by one of the following opcodes:\n\n*   `message_ImitationSound`\n*   `message_Mail`\n*   `message_Monologue`\n*   `message_Notice`\n*   `message_SpecialTalk`\n*   `message_Talk`\n\nThis opcode suspends the current routine until the A Button, B Button or textbox is pressed (via the Touch Screen). Once done so, the textbox will not close, but the current routine will resume.",
+			"name": "message_KeyWait"
+		},
+		{
+			"args": [
+				{
+					"description": "Text to be displayed on the Touch Screen.",
+					"name": "txt"
+				}
+			],
+			"description": "Displays the string defined in the ''txt'' parameter at the bottom of the Touch Screen. The string will appear surrounded by a player-chosen frame defined in `FONT/frameX.wte` (as seen in the Misc. Graphics tab of SkyTemple).\n\nThis opcode does not support displaying a portrait. No sound will emit from the text scrolling.",
+			"name": "message_Mail"
+		},
+		{
+			"args": [
+				{
+					"description": "The ID of a menu, the list of which can be seen by typing `MENU_` in SkyTemple's Script Engine Debugger.",
+					"name": "menu_id"
+				}
+			],
+			"description": "Executes various hardcoded \"menu\" functionalities given a certain ID. Some IDs result in an actual menu, while others simply perform a silent task.",
+			"name": "message_Menu"
+		},
+		{
+			"args": [
+				{
+					"description": "Text to be displayed on the Touch Screen.",
+					"name": "txt"
+				}
+			],
+			"description": "Displays the string defined in the ''txt'' parameter at the bottom of the Touch Screen. The string will appear surrounded by a player-chosen frame defined in `FONT/frameX.wte` (as seen in the Misc. Graphics tab of SkyTemple).\n\nThis opcode supports displaying a portrait. No sound will emit from the text scrolling.",
+			"name": "message_Monologue"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of frames used to fade in/out the Touch Screen.",
+					"name": "duration"
+				},
+				{
+					"description": "Text to be displayed on the Touch Screen.",
+					"name": "txt"
+				}
+			],
+			"description": "Fades in the screen and instantly displays the string defined in the ''txt'' parameter centered in the middle of the Touch Screen. The string will appear without any frame defined in `FONT/frameX.wte` (as seen in the Misc. Graphics tab of SkyTemple). This opcode does not need `message_Close` to suspend the routine. Once the routine is resumed (by pressing the A Button, B Button, or text via the Touch Screen), the screen will fade out, including the string.",
+			"name": "message_Narration"
+		},
+		{
+			"args": [
+				{
+					"description": "Text to be displayed on the Touch Screen.",
+					"name": "txt"
+				}
+			],
+			"description": "Instantly displays the string defined in the ''txt'' parameter at the bottom of the Touch Screen. The string will appear surrounded by a player-chosen frame defined in `FONT/frameX.wte` (as seen in the Misc. Graphics tab of SkyTemple).\n\nThis opcode does not support displaying a portrait.",
+			"name": "message_Notice"
+		},
+		{
+			"args": [],
+			"description": "Disallows a portrait from appearing alongside a textbox, along with disallowing a name to appear in the textbox if `message_Talk` follows this opcode.",
+			"name": "message_EmptyActor"
+		},
+		{
+			"args": [],
+			"description": "Disallows a portrait from appearing alongside a textbox, along with setting a speech bubble (the text tag [M:T1]) to the start of next script string if `message_Talk` follows this opcode.",
+			"name": "message_ResetActor"
+		},
+		{
+			"args": [
+				{
+					"description": "An entry in the Actor List.",
+					"name": "actor_id"
+				}
+			],
+			"description": "Sets the specified actor's name to the start of the next script string if `message_Talk` follows this opcode.",
+			"name": "message_SetActor"
+		},
+		{
+			"args": [
+				{
+					"description": "An entry in the Actor List.",
+					"name": "actor_id"
+				},
+				{
+					"description": "The ID of a portrait, the list of which can be seen by typing `FACE_` in SkyTemple's Script Engine Debugger.",
+					"name": "face_id"
+				},
+				{
+					"description": "The position of a portrait, the list of which can be seen by typing `FACE_POS_` in SkyTemple's Script Engine Debugger.",
+					"name": "face_mode"
+				}
+			],
+			"description": "Sets the specified actor's name to the start of the next script string if `message_Talk` follows this opcode. Will also display a portrait of the actor's species at a specified position if `message_Talk` or `message_Monologue` follow this opcode.",
+			"name": "message_SetFace"
+		},
+		{
+			"args": [
+				{
+					"description": "An entry in the Actor List.",
+					"name": "actor_id"
+				},
+				{
+					"description": "The ID of a portrait, the list of which can be seen by typing `FACE_` in SkyTemple's Script Engine Debugger.",
+					"name": "face_id"
+				},
+				{
+					"description": "The position of a portrait, the list of which can be seen by typing `FACE_POS_` in SkyTemple's Script Engine Debugger.",
+					"name": "face_mode"
+				}
+			],
+			"description": "Displays a portrait of the actor's species at a specified position if `message_Talk` or `message_Monologue` follow this opcode.",
+			"name": "message_SetFaceEmpty"
+		},
+		{
+			"args": [
+				{
+					"description": "An entry in the Actor List.",
+					"name": "actor_id"
+				},
+				{
+					"description": "The ID of a portrait, the list of which can be seen by typing `FACE_` in SkyTemple's Script Engine Debugger.",
+					"name": "face_id"
+				},
+				{
+					"description": "The position of a portrait, the list of which can be seen by typing `FACE_POS_` in SkyTemple's Script Engine Debugger.",
+					"name": "face_mode"
+				}
+			],
+			"description": "Sets a speech bubble (the text tag [M:T1]) to the start of the next script string if `message_Talk` follows this opcode. Will also display a portrait of the actor's species at a specified position if `message_Talk` or `message_Monologue` follow this opcode.",
+			"name": "message_SetFaceOnly"
+		},
+		{
+			"args": [
+				{
+					"description": "The position of a portrait, the list of which can be seen by typing `FACE_POS_` in SkyTemple's Script Engine Debugger.",
+					"name": "face_mode"
+				}
+			],
+			"description": "Re-positions an actor's portrait.",
+			"name": "message_SetFacePosition"
+		},
+		{
+			"args": [
+				{
+					"description": "Sets the frame count for a textbox auto-advancing, once the end of the string has been displayed and the following opcode is `message_KeyWait();`.",
+					"name": "duration0"
+				},
+				{
+					"description": "Sets the frame count for text tags such as [K] auto-advancing.",
+					"name": "duration1"
+				}
+			],
+			"description": "Makes strings displayed with a `message_` opcode auto-scroll. For both parameters, a value of -1 means the auto-scroll will stop.",
+			"name": "message_SetWaitMode"
+		},
+		{
+			"args": [
+				{
+					"description": "A category of Text String.\n\n*   0 seems to use Text Strings while not in a dungeon (e.g., teammates waiting at Spinda's Cafe).\n*   1 seems to be use Text Strings while mid-dungeon (e.g., teammates at Amp Plains).",
+					"name": "category"
+				}
+			],
+			"description": "Displays a random Text String based off of the actor ACTOR_TALK_SUB's Talk Group.",
+			"name": "message_SpecialTalk"
+		},
+		{
+			"args": [
+				{
+					"description": "Text to be displayed on the Touch Screen.",
+					"name": "txt"
+				}
+			],
+			"description": "Displays the string defined in the ''txt'' parameter at the bottom of the Touch Screen. The string will appear surrounded by a player-chosen frame defined in `FONT/frameX.wte` (as seen in the Misc. Graphics tab of SkyTemple).\n\nThis opcode supports displaying a portrait. The [[sound effect]] 16133 will emit from the each character scrolling in the text.",
+			"name": "message_Talk"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "The pixel position on the X-axis.",
+					"name": "x"
+				},
+				{
+					"description": "The pixel position on the Y-axis.",
+					"name": "y"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to a specific pixel position without restricting the angles used.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Move2Position"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "An entry in the Actor List.",
+					"name": "actor_id"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to an actor without restricting the angles used.\n\nThis opcode must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Move2PositionLives"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of parameters to read from this opcode.",
+					"name": "num_parameters"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.\nThis parameter may be repeated multiple times.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to one or more Position Marks without restricting the angles used.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Move2PositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to a Position Mark without restricting the angles used.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Move2PositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of parameters to read from this opcode.",
+					"name": "num_parameters"
+				},
+				{
+					"description": "The pixel offset to shift the entity across the X or Y-axis.\nThis parameter may be repeated multiple times.",
+					"name": "x, y"
+				}
+			],
+			"description": "Offsets an entity (i.e., an actor, object, or performer) from its current position across both axes without restricting the angles used.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Move2PositionOffset"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "The pixel offset to shift the entity across the X-axis.",
+					"name": "x"
+				},
+				{
+					"description": "The pixel offset to shift the entity across the Y-axis.",
+					"name": "y"
+				}
+			],
+			"description": "Offsets an entity (i.e., an actor, object, or performer) from its current position across both axes without restricting the angles used.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Move2PositionOffset"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "Determines something about the random pixel value chosen to apply to the X-axis; somewhat unknown.",
+					"name": "x"
+				},
+				{
+					"description": "Determines something about the random pixel value chosen to apply to the Y-axis; somewhat unknown.",
+					"name": "y"
+				}
+			],
+			"description": "Continuously and randomly offsets an entity (i.e., an actor, object, or performer) from its current position across both axes without restricting the angles used.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Move2PositionOffsetRandom"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "The pixel position on the X-axis.",
+					"name": "x"
+				},
+				{
+					"description": "The pixel position on the Y-axis.",
+					"name": "y"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to a specific pixel position in a rapid, strange motion.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Move3Position"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "An entry in the Actor List.",
+					"name": "actor_id"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to an actor in a rapid, strange motion.\n\nThis opcode must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Move3PositionLives"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of parameters to read from this opcode.",
+					"name": "num_parameters"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.\nThis parameter may be repeated multiple times.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to a Position Mark in a rapid, strange motion.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Move3PositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to a Position Mark in a rapid, strange motion.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Move3PositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of parameters to read from this opcode.",
+					"name": "num_parameters"
+				},
+				{
+					"description": "The pixel offset to shift the entity across the X or Y-axis.\nThis parameter may be repeated multiple times.",
+					"name": "x, y"
+				}
+			],
+			"description": "Offsets an entity (i.e., an actor, object, or performer) from its current position across both axes in a rapid, strange motion.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Move3PositionOffset"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "The pixel offset to shift the entity across the X-axis.",
+					"name": "x"
+				},
+				{
+					"description": "The pixel offset to shift the entity across the Y-axis.",
+					"name": "y"
+				}
+			],
+			"description": "Offsets an entity (i.e., an actor, object, or performer) from its current position across both axes in a rapid, strange motion.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Move3PositionOffset"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "Determines something about the random pixel value chosen to apply to the X-axis; somewhat unknown.",
+					"name": "x"
+				},
+				{
+					"description": "Determines something about the random pixel value chosen to apply to the Y-axis; somewhat unknown.",
+					"name": "y"
+				}
+			],
+			"description": "Continuously and randomly offsets an entity (i.e., an actor, object, or performer) from its current position across both axes in a rapid, strange motion.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Move3PositionOffsetRandom"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.",
+					"name": "speed"
+				},
+				{
+					"description": "The pixel offset to shift the entity relative to the entity's direction.",
+					"name": "offset"
+				},
+				{
+					"description": "The type of direction, the list of which can be seen by typing `DIR_` in SkyTemple's Script Engine Debugger.",
+					"name": "direction"
+				}
+			],
+			"description": "Offsets an entity (i.e., an actor, object, or performer) by a certain number of pixels based on a given direction. Movement is performed while restricting movement by eight angles—as if movement was performed using the D-Pad.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "MoveDirection"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.",
+					"name": "speed"
+				},
+				{
+					"description": "The pixel height to set the entity relative to their shadow.",
+					"name": "height"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to a certain pixel height, displacing it from its shadow. When used, the entity's animation and direction will not change.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "MoveHeight"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "The pixel position on the X-axis.",
+					"name": "x"
+				},
+				{
+					"description": "The pixel position on the Y-axis.",
+					"name": "y"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to a specific pixel position while restricting movement by eight angles—as if movement was performed using the D-Pad.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "MovePosition"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "An entry in the Actor List.",
+					"name": "actor_id"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to an actor while restricting movement by eight angles—as if movement was performed using the D-Pad.\n\nThis opcode must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "MovePositionLives"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "An entry in the Actor List.",
+					"name": "actor_id"
+				},
+				{
+					"description": "The number of frames used to move the entity.",
+					"name": "duration"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to an actor while restricting movement by eight angles—as if movement was performed using the D-Pad. Movement will end once either the entity reaches the actor or after a certain number of frames have passed—whichever comes first.\n\nThis opcode must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "MovePositionLivesTime"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of parameters to read from this opcode.",
+					"name": "num_parameters"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.\nThis parameter may be repeated multiple times.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to a Position Mark while restricting movement by eight angles—as if movement was performed using the D-Pad.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "MovePositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to a Position Mark while restricting movement by eight angles—as if movement was performed using the D-Pad.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "MovePositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.",
+					"name": "pos_marker"
+				},
+				{
+					"description": "The number of frames used to move the entity.",
+					"name": "duration"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to an Position Mark while restricting movement by eight angles—as if movement was performed using the D-Pad. Movement will end once either the entity reaches the Position Mark or after a certain number of frames have passed—whichever comes first.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "MovePositionMarkTime"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of parameters to read from this opcode.",
+					"name": "num_parameters"
+				},
+				{
+					"description": "The pixel offset to shift the entity across the X or Y-axis.\nThis parameter may be repeated multiple times.",
+					"name": "x, y"
+				}
+			],
+			"description": "Offsets an entity (i.e., an actor, object, or performer) from its current position across both axes while restricting movement by eight angles—as if movement was performed using the D-Pad.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "MovePositionOffset"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "The pixel offset to shift the entity across the X-axis.",
+					"name": "x"
+				},
+				{
+					"description": "The pixel offset to shift the entity across the Y-axis.",
+					"name": "y"
+				}
+			],
+			"description": "Offsets an entity (i.e., an actor, object, or performer) from its current position across both axes while restricting movement by eight angles—as if movement was performed using the D-Pad.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "MovePositionOffset"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines the kind of action.\n\n*   0: Spin and move in a circular motion.\n*   1: Spin and move in a circular motion.\n*   2: Currently unknown.\n*   3: Currently unknown.\n*   4: Currently unknown. Seems to be the most commonly-used value, as a part of the Unionall Coroutine CORO_LIVES_REPLY_NOMRAL.",
+					"name": "mode"
+				},
+				{
+					"description": "Currently unknown. Seems to affect how far the entity will move?",
+					"name": "unk1"
+				},
+				{
+					"description": "Currently unknown.",
+					"name": "unk2"
+				}
+			],
+			"description": "Currently unknown. Seems to move an entity (i.e., an actor, object, or performer) based on some hardcoded behaviors.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "MoveSpecial"
+		},
+		{
+			"args": [
+				{
+					"description": "How far the entity will move. Higher values result in greater distance being covered.",
+					"name": "distance"
+				},
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.\n\nThis parameter also seems to affect the distance traveled.",
+					"name": "speed"
+				},
+				{
+					"description": "A hardcoded pattern to move in.\n\n*   0: Moves in a circle clockwise.\n*   1: Moves in a circle counterclockwise.\n*   2: Moves in a square clockwise.\n*   3: Moves in a square counterclockwise.\n*   4: Zig-zags back and forth.\n\nValues 6 and above seem to be variations of random movement.",
+					"name": "pattern"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) based on a certain pattern. Unlike other `Move` opcodes, this opcode will make the entity interact with the currently loaded Map Background's collision (i.e., the entity stops when hitting a wall).\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "MoveTurn"
+		},
+		{
+			"args": [
+				{
+					"description": "A graphical effect to display relative to an entity.",
+					"name": "effect_id"
+				}
+			],
+			"description": "Instantly pauses the current graphical effect of an entity (i.e., an actor, object, or performer). The effect will freeze mid-frame.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "PauseEffect"
+		},
+		{
+			"args": [
+				{
+					"description": "One of the game's Special Processes.",
+					"name": "process_id"
+				},
+				{
+					"description": "The first parameter used by the Special Process.",
+					"name": "process_param1"
+				},
+				{
+					"description": "The first parameter used by the Special Process.",
+					"name": "process_param2"
+				}
+			],
+			"description": "Executes one of the game's Special Processes. The return value of a Special Process can be checked by encasing this opcode in a `switch` statement. A negative return value is not acceptable and will cause the game to suspend indefinitely.\n\nThis opcode cannot be used in targeted routines.",
+			"name": "ProcessSpecial"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of frames used to make the entity turn. A value of 0 will make the entity turn forever.",
+					"name": "duration"
+				},
+				{
+					"description": "Turning speed. Higher values result in a slower speed.",
+					"name": "speed"
+				},
+				{
+					"description": "The actor to turn toward.",
+					"name": "actor_id"
+				},
+				{
+					"description": "*   0: Clockwise.\n*   1: Counterclockwise.\n\nA value of 10 will make the entity choose the nearest rotation.",
+					"name": "rotation"
+				}
+			],
+			"description": "Causes an entity (i.e., an actor, object, or performer) to continuously turn toward an actor for a certain number of frames.\n\nThis opcode must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "PursueTurnLives"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of frames used to make the entity turn. A value of 0 will make the entity turn forever.",
+					"name": "duration"
+				},
+				{
+					"description": "Turning speed. Higher values result in a slower speed.",
+					"name": "speed"
+				},
+				{
+					"description": "The actor to turn toward.",
+					"name": "actor_id"
+				},
+				{
+					"description": "*   0: Clockwise.\n*   1: Counterclockwise.\n\nA value of 10 will make the entity choose the nearest rotation.",
+					"name": "rotation"
+				}
+			],
+			"description": "Causes an entity (i.e., an actor, object, or performer) to continuously turn toward an actor for a certain number of frames.\n\nThis opcode must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "PursueTurnLives2"
+		},
+		{
+			"args": [
+				{
+					"description": "Currently unknown.",
+					"name": "unk0"
+				}
+			],
+			"description": "Currently unknown. Seems to get ignored when parsed in the scripting engine.",
+			"name": "ResetAttribute"
+		},
+		{
+			"args": [
+				{
+					"description": "Most bits' purposes are unknown. Bit 1 appears to be the bit used for allowing an entity to follow a Type 1 actor, like the actor ACTOR_ATTENDANT1 in the overworld.",
+					"name": "function_bitfield"
+				}
+			],
+			"description": "Sets certain bits of an entity's (i.e., an actor, object, or performer) \"function\" attribute to 0.",
+			"targeted": true,
+			"name": "ResetFunctionAttribute"
+		},
+		{
+			"args": [
+				{
+					"description": "Most bits' purposes are unknown.\n\n*   2: Entity collision.\n*   6: Talk Script upon collision.\n*   7: Talk Script upon pressing the A Button near the entity.",
+					"name": "hit_bitfield"
+				}
+			],
+			"description": "Sets certain bits of an entity's (i.e., an actor, object, or performer) \"hit\" attribute to 0.",
+			"targeted": true,
+			"name": "ResetHitAttribute"
+		},
+		{
+			"args": [
+				{
+					"description": "*   0: Underlay below entities.\n*   1: Overlay above entities.\n*   2: Overlay above the current Map Background's Layer 2.\n*   3: Overlay above the game's canvas system, which includes the textbox, portrait, and some `screen_` commands that do not end in `All`.\n*   4: Flicker.\n*   5: Transparency.\n*   6: Invisibility.\n*   7: Displays shadow.",
+					"name": "output_bitfield"
+				}
+			],
+			"description": "Sets certain bits of an entity's (i.e., an actor, object, or performer) \"output\" attribute to 0.",
+			"targeted": true,
+			"name": "ResetOutputAttribute"
+		},
+		{
+			"args": [
+				{
+					"description": "Most bits' purposes are unknown.\n\n*   1: Talk Script upon collision.\n*   2: Talk Script upon pressing the A Button near the entity.\n*   6: Underlay below entities.\n*   7: Overlay above entities.",
+					"name": "reply_bitfield"
+				}
+			],
+			"description": "Sets certain bits of an entity's (i.e., an actor, object, or performer) \"reply\" attribute to 0.",
+			"targeted": true,
+			"name": "ResetReplyAttribute"
+		},
+		{
+			"args": [
+				{
+					"description": "A graphical effect to display relative to an entity.",
+					"name": "effect_id"
+				}
+			],
+			"description": "Resumes the current graphical effect of an entity (i.e., an actor, object, or performer) that has been paused with `PauseEffect` prior to using this opcode.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "ResumeEffect"
+		},
+		{
+			"args": [
+				{
+					"description": "Index used by all `$POSITION_` script variables, ranged from 0-2 (inclusive).",
+					"name": "index"
+				}
+			],
+			"description": "Saves various attributes of an entity (i.e., an actor, object, or performer) to the following script variables:\n\n*   `$POSITION_X`: The pixel position of the entity on the X-axis multiplied by 256.\n*   `$POSITION_Y`: The pixel position of the entity on the Y-axis multiplied by 256.\n*   `$POSITION_HEIGHT`: The pixel height (i.e., displacement of the entity from their shadow) of the entity multiplied by 256.\n*   `$POSITION_DIRECTION`: The direction the entity is facing.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "SavePosition"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and 1 is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Touch Screen's brightness.",
+					"name": "duration"
+				},
+				{
+					"description": "The brightness level the opcode will begin at.\n\n*   The minimum brightness is 0, which results in a black screen.\n*   The default brightness is 256.\n*   The maximum brightness is 512, which results in a white screen.",
+					"name": "start_brightness"
+				},
+				{
+					"description": "The brightness level the opcode will end at.\n\n*   The minimum brightness is 0, which results in a black screen.\n*   The default brightness is 256.\n*   The maximum brightness is 512, which results in a white screen.",
+					"name": "end_brightness"
+				}
+			],
+			"description": "Changes the brightness of the screen across a certain number of frames. This opcode will not affect:\n\n*   Entities who have had their 4th \"output\" bit set to 1 (e.g., by using `SetOutputAttribute(16);` with them).\n*   Portraits.\n*   Textboxes.",
+			"name": "screen_FadeChange"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and anything else is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Touch Screen's brightness.",
+					"name": "duration"
+				},
+				{
+					"description": "The brightness level the opcode will begin at.\n\n*   The minimum brightness is 0, which results in a black screen.\n*   The default brightness is 256.\n*   The maximum brightness is 512, which results in a white screen.",
+					"name": "start_brightness"
+				},
+				{
+					"description": "The brightness level the opcode will end at.\n\n*   The minimum brightness is 0, which results in a black screen.\n*   The default brightness is 256.\n*   The maximum brightness is 512, which results in a white screen.",
+					"name": "end_brightness"
+				}
+			],
+			"description": "Changes the brightness of the screen across a certain number of frames. This opcode will affect everything on the Touch Screen.",
+			"name": "screen_FadeChangeAll"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and anything else is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Touch Screen's brightness.",
+					"name": "duration"
+				}
+			],
+			"description": "Changes the brightness of the screen to its default state across a certain number of frames. This opcode will not affect:\n\n*   Entities who have had their 4th \"output\" bit set to 1 (e.g., by using `SetOutputAttribute(16);` with them).\n*   Portraits.\n*   Textboxes.",
+			"name": "screen_FadeIn"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and anything else is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Touch Screen's brightness.",
+					"name": "duration"
+				}
+			],
+			"description": "Changes the brightness of the screen to its default state across a certain number of frames. This opcode will affect everything on the Touch Screen.",
+			"name": "screen_FadeInAll"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and anything else is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Touch Screen's brightness.",
+					"name": "duration"
+				}
+			],
+			"description": "Changes the brightness of the screen to its minimum (i.e., a black screen) across a certain number of frames. This opcode will not affect:\n\n*   Entities who have had their 4th \"output\" bit set to 1 (e.g., by using `SetOutputAttribute(16);` with them).\n*   Portraits.\n*   Textboxes.",
+			"name": "screen_FadeOut"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and anything else is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Touch Screen's brightness.",
+					"name": "duration"
+				}
+			],
+			"description": "Changes the brightness of the screen to its minimum (i.e., a black screen) across a certain number of frames. This opcode will affect everything on the Touch Screen.",
+			"name": "screen_FadeOutAll"
+		},
+		{
+			"args": [
+				{
+					"description": "Does nothing.",
+					"name": "unk0"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk1"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk2"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk3"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk4"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk5"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk6"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk7"
+				}
+			],
+			"description": "Does nothing.",
+			"name": "screen_FlushChange"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and anything else is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Touch Screen's color.",
+					"name": "duration"
+				},
+				{
+					"description": "* 0: Completely darkens the Touch Screen.\n* 1: Completely turns the Touch Screen to a certain color.\n* 2: Instantly darkens the Touch Screen?\n* 3: Overlays the Touch Screen with a certain color.\n* 4: Instantly darkens the Touch Screen?\n* 5: Overlays the Touch Screen with hardcoded color bytes: 144, 144, and 255.\n* 6: Instantly darkens the Touch Screen?\n* 7: Overlays the Touch Screen with hardcoded color bytes: 255, 192, and 128.\n* 8: Instantly darkens the Touch Screen?\n* 9: Overlays the Touch Screen with hardcoded color bytes: All 255. The Touch Screen is not turned completely white.\n* 10: Instantly overlays the Touch Screen with hardcoded color bytes: All 255. The Touch Screen is not turned completely white.",
+					"name": "mode"
+				},
+				{
+					"description": "Unused if ''mode'' is not 2 or 4. Byte used for the color red. Has a minimum of 0 and a maximium of 255.",
+					"name": "r"
+				},
+				{
+					"description": "Unused if ''mode'' is not 2 or 4. Byte used for the color green. Has a minimum of 0 and a maximium of 255.",
+					"name": "g"
+				},
+				{
+					"description": "Unused if ''mode'' is not 2 or 4. Byte used for the color blue. Has a minimum of 0 and a maximium of 255.",
+					"name": "b"
+				}
+			],
+			"description": "Changes the color of the screen from a specific state (given by the opcode's parameters, which affect the Touch Screen instantly) to its default state across a certain number of frames. This opcode will affect all entities (i.e., actors, objects, and performers) on the Touch Screen.",
+			"name": "screen_FlushIn"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and anything else is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Touch Screen's color.",
+					"name": "duration"
+				},
+				{
+					"description": "*   0: Completely darkens the Touch Screen.\n*   1: Completely turns the Touch Screen to a certain color.\n*   2: Instantly darkens the Touch Screen?\n*   3: Overlays the Touch Screen with a certain color.\n*   4: Instantly darkens the Touch Screen?\n*   5: Overlays the Touch Screen with hardcoded color bytes: 144, 144, and 255.\n*   6: Instantly darkens the Touch Screen?\n*   7: Overlays the Touch Screen with hardcoded color bytes: 255, 192, and 128.\n*   8: Instantly darkens the Touch Screen?\n*   9: Overlays the Touch Screen with hardcoded color bytes: All 255. The Touch Screen is not turned completely white.\n*   10: Instantly overlays the Touch Screen with hardcoded color bytes: All 255. The Touch Screen is not turned completely white.",
+					"name": "mode"
+				},
+				{
+					"description": "Unused if ''mode'' is not 2 or 4. Byte used for the color red. Has a minimum of 0 and a maximium of 255.",
+					"name": "r"
+				},
+				{
+					"description": "Unused if ''mode'' is not 2 or 4. Byte used for the color green. Has a minimum of 0 and a maximium of 255.",
+					"name": "g"
+				},
+				{
+					"description": "Unused if ''mode'' is not 2 or 4. Byte used for the color blue. Has a minimum of 0 and a maximium of 255.",
+					"name": "b"
+				}
+			],
+			"description": "Changes the color of the screen across a certain number of frames. This opcode will affect all entities (i.e., actors, objects, and performers) on the Touch Screen.",
+			"name": "screen_FlushOut"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and 1 is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Touch Screen's brightness.",
+					"name": "duration"
+				},
+				{
+					"description": "The brightness level the opcode will begin at.\n\n*   The minimum brightness is 0, which results in a white screen.\n*   The default brightness is 256.\n*   The maximum brightness is 512, which results in a black screen.",
+					"name": "start_brightness"
+				},
+				{
+					"description": "The brightness level the opcode will end at.\n\n*   The minimum brightness is 0, which results in a white screen.\n*   The default brightness is 256.\n*   The maximum brightness is 512, which results in a black screen.",
+					"name": "end_brightness"
+				}
+			],
+			"description": "Changes the brightness of the screen across a certain number of frames. This opcode will not affect:\n\n*   Entities who have had their 4th \"output\" bit set to 1 (e.g., by using `SetOutputAttribute(16);` with them).\n*   Portraits.\n*   Textboxes.",
+			"name": "screen_WhiteChange"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and anything else is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Touch Screen's brightness.",
+					"name": "duration"
+				},
+				{
+					"description": "The brightness level the opcode will begin at.\n\n*   The minimum brightness is 0, which results in a white screen.\n*   The default brightness is 256.\n*   The maximum brightness is 512, which results in a black screen.",
+					"name": "start_brightness"
+				},
+				{
+					"description": "The brightness level the opcode will end at.\n\n*   The minimum brightness is 0, which results in a white screen.\n*   The default brightness is 256.\n*   The maximum brightness is 512, which results in a black screen.",
+					"name": "end_brightness"
+				}
+			],
+			"description": "Changes the brightness of the screen across a certain number of frames. This opcode will affect everything on the Touch Screen.",
+			"name": "screen_WhiteChangeAll"
+		},
+		{
+			"args": [
+				{
+					"description": "Does nothing.",
+					"name": "unk0"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk1"
+				}
+			],
+			"description": "Does nothing. Do not be deceived by this opcode's name: After using `screen_WhiteOut`, use `screen_FadeIn` to restore the Touch Screen's brightness level!",
+			"name": "screen_WhiteIn"
+		},
+		{
+			"args": [
+				{
+					"description": "Does nothing.",
+					"name": "unk0"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk1"
+				}
+			],
+			"description": "Does nothing. Do not be deceived by this opcode's name: After using `screen_WhiteOutAll`, use `screen_FadeInAll` to restore the Touch Screen's brightness level!",
+			"name": "screen_WhiteInAll"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and anything else is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Touch Screen's brightness.",
+					"name": "duration"
+				}
+			],
+			"description": "Changes the brightness of the screen to its maximum (i.e., a white screen) across a certain number of frames. This opcode will not affect:\n\n*   Entities who have had their 4th \"output\" bit set to 1 (e.g., by using `SetOutputAttribute(16);` with them).\n*   Portraits.\n*   Textboxes.",
+			"name": "screen_WhiteOut"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and anything else is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Touch Screen's brightness.",
+					"name": "duration"
+				}
+			],
+			"description": "Changes the brightness of the screen to its maximum (i.e., a white screen) across a certain number of frames. This opcode will affect everything on the Touch Screen.",
+			"name": "screen_WhiteOutAll"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and 1 is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Top Screen's brightness.",
+					"name": "duration"
+				},
+				{
+					"description": "The brightness level the opcode will begin at.\n\n*   The minimum brightness is 0, which results in a black screen.\n*   The default brightness is 256.\n*   The maximum brightness is 512, which results in a white screen.",
+					"name": "start_brightness"
+				},
+				{
+					"description": "The brightness level the opcode will end at.\n\n*   The minimum brightness is 0, which results in a black screen.\n*   The default brightness is 256.\n*   The maximum brightness is 512, which results in a white screen.",
+					"name": "end_brightness"
+				}
+			],
+			"description": "Changes the brightness of the screen across a certain number of frames. This opcode will affect everything on the Top Screen.",
+			"name": "screen2_FadeChange"
+		},
+		{
+			"args": [
+				{
+					"description": "Does nothing.",
+					"name": "unk0"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk1"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk2"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk3"
+				}
+			],
+			"description": "Does nothing.",
+			"name": "screen2_FadeChangeAll"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and anything else is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Top Screen's brightness.",
+					"name": "duration"
+				}
+			],
+			"description": "Changes the brightness of the screen to its default state across a certain number of frames. This opcode will affect everything on the Top Screen.",
+			"name": "screen2_FadeIn"
+		},
+		{
+			"args": [
+				{
+					"description": "Does nothing.",
+					"name": "unk0"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk1"
+				}
+			],
+			"description": "Does nothing.",
+			"name": "screen2_FadeInAll"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and anything else is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Top Screen's brightness.",
+					"name": "duration"
+				}
+			],
+			"description": "Changes the brightness of the screen to its minimum (i.e., a black screen) across a certain number of frames. This opcode will affect everything on the Top Screen.",
+			"name": "screen2_FadeOut"
+		},
+		{
+			"args": [
+				{
+					"description": "Does nothing.",
+					"name": "unk0"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk1"
+				}
+			],
+			"description": "Does nothing.",
+			"name": "screen2_FadeOutAll"
+		},
+		{
+			"args": [
+				{
+					"description": "Does nothing.",
+					"name": "unk0"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk1"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk2"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk3"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk4"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk5"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk6"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk7"
+				}
+			],
+			"description": "Does nothing.",
+			"name": "screen2_FlushChange"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and anything else is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Top Screen's color.",
+					"name": "duration"
+				},
+				{
+					"description": "* 0: Completely darkens the Top Screen.\n* 1: Completely turns the Top Screen to a certain color.\n* 2: Instantly darkens the Top Screen?\n* 3: Overlays the Top Screen with a certain color.\n* 4: Instantly darkens the Top Screen?\n* 5: Overlays the Top Screen with hardcoded color bytes: 144, 144, and 255.\n* 6: Instantly darkens the Top Screen?\n* 7: Overlays the Top Screen with hardcoded color bytes: 255, 192, and 128.\n* 8: Instantly darkens the Top Screen?\n* 9: Overlays the Top Screen with hardcoded color bytes: All 255. The Top Screen is not turned completely white.\n* 10: Instantly overlays the Top Screen with hardcoded color bytes: All 255. The Top Screen is not turned completely white.",
+					"name": "mode"
+				},
+				{
+					"description": "Unused if ''mode'' is not 2 or 4. Byte used for the color red. Has a minimum of 0 and a maximium of 255.",
+					"name": "r"
+				},
+				{
+					"description": "Unused if ''mode'' is not 2 or 4. Byte used for the color green. Has a minimum of 0 and a maximium of 255.",
+					"name": "g"
+				},
+				{
+					"description": "Unused if ''mode'' is not 2 or 4. Byte used for the color blue. Has a minimum of 0 and a maximium of 255.",
+					"name": "b"
+				}
+			],
+			"description": "The same as `screen_FlushIn`, but for the Top Screen.",
+			"name": "screen2_FlushIn"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and anything else is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Top Screen's color.",
+					"name": "duration"
+				},
+				{
+					"description": "* 0: Completely darkens the Top Screen.\n* 1: Completely turns the Top Screen to a certain color.\n* 2: Instantly darkens the Top Screen?\n* 3: Overlays the Top Screen with a certain color.\n* 4: Instantly darkens the Top Screen?\n* 5: Overlays the Top Screen with hardcoded color bytes: 144, 144, and 255.\n* 6: Instantly darkens the Top Screen?\n* 7: Overlays the Top Screen with hardcoded color bytes: 255, 192, and 128.\n* 8: Instantly darkens the Top Screen?\n* 9: Overlays the Top Screen with hardcoded color bytes: All 255. The Top Screen is not turned completely white.\n* 10: Instantly overlays the Top Screen with hardcoded color bytes: All 255. The Top Screen is not turned completely white.",
+					"name": "mode"
+				},
+				{
+					"description": "Unused if ''mode'' is not 2 or 4. Byte used for the color red. Has a minimum of 0 and a maximium of 255.",
+					"name": "r"
+				},
+				{
+					"description": "Unused if ''mode'' is not 2 or 4. Byte used for the color green. Has a minimum of 0 and a maximium of 255.",
+					"name": "g"
+				},
+				{
+					"description": "Unused if ''mode'' is not 2 or 4. Byte used for the color blue. Has a minimum of 0 and a maximium of 255.",
+					"name": "b"
+				}
+			],
+			"description": "The same as `screen_FlushOut`, but for the Top Screen.",
+			"name": "screen2_FlushOut"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and anything else is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Top Screen's brightness.",
+					"name": "duration"
+				},
+				{
+					"description": "The brightness level the opcode will begin at.\n\n*   The minimum brightness is 0, which results in a white screen.\n*   The default brightness is 256.\n*   The maximum brightness is 512, which results in a black screen.",
+					"name": "start_brightness"
+				},
+				{
+					"description": "The brightness level the opcode will end at.\n\n*   The minimum brightness is 0, which results in a white screen.\n*   The default brightness is 256.\n*   The maximum brightness is 512, which results in a black screen.",
+					"name": "end_brightness"
+				}
+			],
+			"description": "Changes the brightness of the screen across a certain number of frames. This opcode will affect everything on the Top Screen.",
+			"name": "screen2_WhiteChange"
+		},
+		{
+			"args": [
+				{
+					"description": "Does nothing.",
+					"name": "unk0"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk1"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk2"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk3"
+				}
+			],
+			"description": "Does nothing.",
+			"name": "screen2_WhiteChangeAll"
+		},
+		{
+			"args": [
+				{
+					"description": "Does nothing.",
+					"name": "unk0"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk1"
+				}
+			],
+			"description": "Does nothing. Do not be deceived by this opcode's name: After using `screen2_WhiteOut`, use `screen2_FadeIn` to restore the Top Screen's brightness level!",
+			"name": "screen2_WhiteIn"
+		},
+		{
+			"args": [
+				{
+					"description": "Does nothing.",
+					"name": "unk0"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk1"
+				}
+			],
+			"description": "Does nothing.",
+			"name": "screen2_WhiteInAll"
+		},
+		{
+			"args": [
+				{
+					"description": "Determines whether the script will suspend until this opcode's operation is complete. 0 is false and anything else is true.",
+					"name": "suspension_flag"
+				},
+				{
+					"description": "The number of frames used to change the Top Screen's brightness.",
+					"name": "duration"
+				}
+			],
+			"description": "Changes the brightness of the screen to its maximum (i.e., a white screen) across a certain number of frames. This opcode will affect everything on the Top Screen.",
+			"name": "screen2_WhiteOut"
+		},
+		{
+			"args": [
+				{
+					"description": "Does nothing.",
+					"name": "unk0"
+				},
+				{
+					"description": "Does nothing.",
+					"name": "unk1"
+				}
+			],
+			"description": "Does nothing.",
+			"name": "screen2_WhiteOutAll"
+		},
+		{
+			"args": [
+				{
+					"description": "A sound effect defined in SOUND/SE of the ROM. Actually encoded as `sound_bank_id << 8 + sound_id`, but it can also be represented as an integer.",
+					"name": "se_id"
+				},
+				{
+					"description": "The number of frames used to change the SE's panning.",
+					"name": "duration"
+				},
+				{
+					"description": "The panning of the SE. This parameter gets recalculated internally as  `((''pan'' * 0x3f + ((''pan'' * 0x3f >> 7) >> 0x18)) >> 8) + 0x40`, which is eventually split up into two halfwords, then recalculated further into a signed byte.\nWhat this means is that:\n\n*   A ''pan'' parameter of 260 will result in sound panning only to the right channel.\n*   A ''pan'' parameter of 261 will result in sound panning only to the left channel.\n\nMore research on this parameter may be needed.",
+					"name": "pan"
+				}
+			],
+			"description": "Changes the panning of the currently-playing [[sound effect]] across a certain number of frames.",
+			"name": "se_ChangePan"
+		},
+		{
+			"args": [
+				{
+					"description": "A sound effect defined in SOUND/SE of the ROM. Actually encoded as `sound_bank_id << 8 + sound_id`, but it can also be represented as an integer.",
+					"name": "se_id"
+				},
+				{
+					"description": "The number of frames used to change the SE's volume.",
+					"name": "duration"
+				},
+				{
+					"description": "The volume that the SE will play at. It has a maximum of 256 and a minimum of 0.",
+					"name": "volume"
+				}
+			],
+			"description": "Changes the volume of the currently-playing [[sound effect]] across a certain number of frames.",
+			"name": "se_ChangeVolume"
+		},
+		{
+			"args": [
+				{
+					"description": "A sound effect defined in SOUND/SE of the ROM. Actually encoded as `sound_bank_id << 8 + sound_id`, but it can also be represented as an integer.",
+					"name": "se_id"
+				},
+				{
+					"description": "The number of frames used to fade out and silence a given SE.",
+					"name": "duration"
+				}
+			],
+			"description": "Fades out the currently-playing [[sound effect]] across a certain number of frames.",
+			"name": "se_FadeOut"
+		},
+		{
+			"args": [
+				{
+					"description": "A sound effect defined in SOUND/SE of the ROM. Actually encoded as `sound_bank_id << 8 + sound_id`, but it can also be represented as an integer.",
+					"name": "se_id"
+				}
+			],
+			"description": "Instantly plays a [[sound effect]].",
+			"name": "se_Play"
+		},
+		{
+			"args": [
+				{
+					"description": "A sound effect defined in SOUND/SE of the ROM. Actually encoded as `sound_bank_id << 8 + sound_id`, but it can also be represented as an integer.",
+					"name": "se_id"
+				},
+				{
+					"description": "The volume that the SE will play at. It has a maximum of 256 and a minimum of 0.",
+					"name": "volume"
+				},
+				{
+					"description": "The panning of the SE. This parameter gets recalculated internally as  `((''pan'' * 0x3f + ((''pan'' * 0x3f >> 7) >> 0x18)) >> 8) + 0x40`, which is eventually split up into two halfwords, then recalculated further into a signed byte.\nWhat this means is that:\n\n*   A ''pan'' parameter of 260 will result in sound panning only to the right channel.\n*   A ''pan'' parameter of 261 will result in sound panning only to the left channel.\n\nMore research on this parameter may be needed.",
+					"name": "pan"
+				}
+			],
+			"description": "Instantly plays a [[sound effect]] at a specified volume and panning.",
+			"name": "se_PlayFull"
+		},
+		{
+			"args": [
+				{
+					"description": "A sound effect defined in SOUND/SE of the ROM. Actually encoded as `sound_bank_id << 8 + sound_id`, but it can also be represented as an integer.",
+					"name": "se_id"
+				},
+				{
+					"description": "The panning of the SE. This parameter gets recalculated internally as  `((''pan'' * 0x3f + ((''pan'' * 0x3f >> 7) >> 0x18)) >> 8) + 0x40`, which is eventually split up into two halfwords, then recalculated further into a signed byte.\nWhat this means is that:\n\n*   A ''pan'' parameter of 260 will result in sound panning only to the right channel.\n*   A ''pan'' parameter of 261 will result in sound panning only to the left channel.\n\nMore research on this parameter may be needed.",
+					"name": "pan"
+				}
+			],
+			"description": "Instantly plays a [[sound effect]] at a specified panning.",
+			"name": "se_PlayPan"
+		},
+		{
+			"args": [
+				{
+					"description": "A sound effect defined in SOUND/SE of the ROM. Actually encoded as `sound_bank_id << 8 + sound_id`, but it can also be represented as an integer.",
+					"name": "se_id"
+				},
+				{
+					"description": "The volume that the SE will play at. It has a maximum of 256 and a minimum of 0.",
+					"name": "volume"
+				}
+			],
+			"description": "Instantly plays a [[sound effect]] at a specified volume.",
+			"name": "se_PlayVolume"
+		},
+		{
+			"args": [
+				{
+					"description": "A sound effect defined in SOUND/SE of the ROM. Actually encoded as `sound_bank_id << 8 + sound_id`, but it can also be represented as an integer.",
+					"name": "se_id"
+				}
+			],
+			"description": "Instantly stops a specified sound effect.",
+			"name": "se_Stop"
+		},
+		{
+			"args": [
+				{
+					"description": "Animation table index. Converted to an [[Animation ID]] for the current sprite using the [https://docs.google.com/spreadsheets/d/11xHv80Def5mtF60ZsfI1lF1eNX0dBE2It837Q08AlRk/htmlview SetAnimation table].",
+					"name": "id"
+				}
+			],
+			"description": "Plays a sprite's animation, optionally changing its speed and animation flags.",
+			"targeted": true,
+			"name": "SetAnimation"
+		},
+		{
+			"args": [
+				{
+					"description": "Does nothing.",
+					"name": "unk0"
+				}
+			],
+			"description": "Does nothing.",
+			"targeted": true,
+			"name": "SetAttribute"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of frames to wait for while the entity is visible.",
+					"name": "visible_interval"
+				},
+				{
+					"description": "The number of frames to wait for while the entity is invisible.",
+					"name": "invisible_interval"
+				}
+			],
+			"description": "Sets a specific entity (i.e., an actor, object, or performer) to continuously flicker in and out of view at a certain interval.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "SetBlink"
+		},
+		{
+			"args": [
+				{
+					"description": "The type of direction, the list of which can be seen by typing `DIR_` in SkyTemple's Script Engine Debugger.",
+					"name": "direction"
+				}
+			],
+			"description": "Instantly sets a specific entity (i.e., an actor, object, or performer) to a specified direction.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "SetDirection"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				},
+				{
+					"description": "",
+					"name": "unk1"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SetDirectionLives"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "effect_id"
+				},
+				{
+					"description": "",
+					"name": "position_marker_id?"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SetEffect"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SetFunctionAttribute"
+		},
+		{
+			"args": [
+				{
+					"description": "number of pixels to move up or down by.",
+					"name": "unk0"
+				}
+			],
+			"description": "Moves an actor \"vertically\" by distancing it from its shadow.",
+			"targeted": true,
+			"name": "SetHeight"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SetHitAttribute"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "pos_marker"
+				},
+				{
+					"description": "",
+					"name": "unk4"
+				},
+				{
+					"description": "",
+					"name": "unk5"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SetMoveRange"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SetOutputAttribute"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "x"
+				},
+				{
+					"description": "",
+					"name": "y"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SetPosition"
+		},
+		{
+			"args": [],
+			"description": "",
+			"targeted": true,
+			"name": "SetPositionInitial"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SetPositionLives"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "pos_marker"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SetPositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "x"
+				},
+				{
+					"description": "",
+					"name": "y"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SetPositionOffset"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "x"
+				},
+				{
+					"description": "",
+					"name": "y"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SetPositionOffsetRandom"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SetReplyAttribute"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				},
+				{
+					"description": "",
+					"name": "unk1"
+				},
+				{
+					"description": "",
+					"name": "unk2"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SetupOutputAttributeAndAnimation"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.Values starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "The pixel position on the X-axis.",
+					"name": "x"
+				},
+				{
+					"description": "The pixel position on the Y-axis.",
+					"name": "y"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to a specific pixel position without animation. Must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Slide2Position"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.Values starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "The ID of the actor to move the entity to.",
+					"name": "actor_id"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to an actor without animation. Must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Slide2PositionLives"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of parameters to read from this opcode.",
+					"name": "num_parameters"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.\nThis parameter may be repeated multiple times.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to one or more Position Marks without animation, and without restricting the angles used.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Slide2PositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement. Values starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.",
+					"name": "pos_mark"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to a Position Mark without animation, and without restricting the angles used.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Slide2PositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "num_parameters"
+				},
+				{
+					"description": "These two parameters may be repeated multiple times",
+					"name": "x"
+				},
+				{
+					"description": "These two parameters may be repeated multiple times",
+					"name": "y"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "Slide2PositionOffset"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "speed"
+				},
+				{
+					"description": "",
+					"name": "x"
+				},
+				{
+					"description": "",
+					"name": "y"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "Slide2PositionOffset"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "speed"
+				},
+				{
+					"description": "",
+					"name": "x"
+				},
+				{
+					"description": "",
+					"name": "y"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "Slide2PositionOffsetRandom"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "speed"
+				},
+				{
+					"description": "",
+					"name": "x"
+				},
+				{
+					"description": "",
+					"name": "y"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "Slide3Position"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "speed"
+				},
+				{
+					"description": "",
+					"name": "actor_id"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "Slide3PositionLives"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "num_parameters"
+				},
+				{
+					"description": "This parameter may be repeated multiple times",
+					"name": "pos_marker"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "Slide3PositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "speed"
+				},
+				{
+					"description": "",
+					"name": "pos_marker"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "Slide3PositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "num_parameters"
+				},
+				{
+					"description": "These two parameters may be repeated multiple times",
+					"name": "x"
+				},
+				{
+					"description": "These two parameters may be repeated multiple times",
+					"name": "y"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "Slide3PositionOffset"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "speed"
+				},
+				{
+					"description": "",
+					"name": "x"
+				},
+				{
+					"description": "",
+					"name": "y"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "Slide3PositionOffset"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "speed"
+				},
+				{
+					"description": "",
+					"name": "x"
+				},
+				{
+					"description": "",
+					"name": "y"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "Slide3PositionOffsetRandom"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				},
+				{
+					"description": "",
+					"name": "unk1"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SlideHeight"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				},
+				{
+					"description": "",
+					"name": "x"
+				},
+				{
+					"description": "",
+					"name": "y"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SlidePosition"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				},
+				{
+					"description": "",
+					"name": "unk1"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SlidePositionLives"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				},
+				{
+					"description": "",
+					"name": "unk1"
+				},
+				{
+					"description": "",
+					"name": "unk2"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SlidePositionLivesTime"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of parameters to read from this opcode.",
+					"name": "num_parameters"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.\nThis parameter may be repeated multiple times.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to a Position Mark while restricting movement by eight angles—as if movement was performed using the D-Pad. Unlike MovePositionMark, this will not turn the entity to face the direction they are moving in.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "SlidePositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "Movement speed. Higher values result in a faster speed. 0 will result in an instant movement.\nValues starting at 32770 and above will be slower than a value of 1.",
+					"name": "speed"
+				},
+				{
+					"description": "A structure consisting of a name, X unit, and Y unit. Units are defined as 8 pixels.",
+					"name": "pos_marker"
+				}
+			],
+			"description": "Moves an entity (i.e., an actor, object, or performer) to a Position Mark while restricting movement by eight angles—as if movement was performed using the D-Pad. Unlike MovePositionMark, this will not turn the entity to face the direction they are moving in.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "SlidePositionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				},
+				{
+					"description": "",
+					"name": "unk1"
+				},
+				{
+					"description": "",
+					"name": "pos_marker"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SlidePositionMarkTime"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "num_parameters"
+				},
+				{
+					"description": "This parameter may be repeated multiple times",
+					"name": "x"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SlidePositionOffset"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "speed"
+				},
+				{
+					"description": "",
+					"name": "x"
+				},
+				{
+					"description": "",
+					"name": "y"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "SlidePositionOffset"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				}
+			],
+			"description": "",
+			"name": "sound_FadeOut"
+		},
+		{
+			"args": [],
+			"description": "",
+			"name": "sound_Stop"
+		},
+		{
+			"args": [],
+			"description": "",
+			"targeted": true,
+			"name": "StopAnimation"
+		},
+		{
+			"args": [
+				{
+					"description": "The ID of the sector to load.",
+					"name": "layer_id"
+				}
+			],
+			"description": "Loads a sector of the Acting scene.",
+			"name": "supervision_Acting"
+		},
+		{
+			"args": [
+				{
+					"description": "The ID of the sector to load.",
+					"name": "layer_id"
+				}
+			],
+			"description": "Loads a sector of the Acting scene. Actors and objects in this sector will be invisible.",
+			"name": "supervision_ActingInvisible"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "level"
+				},
+				{
+					"description": "",
+					"name": "script_id"
+				},
+				{
+					"description": "",
+					"name": "unk2"
+				}
+			],
+			"description": "Loads a specified Acting script from the specified level from within Enter/Acting/Sub scripts.",
+			"name": "supervision_ExecuteActing"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "level"
+				},
+				{
+					"description": "",
+					"name": "script_id"
+				},
+				{
+					"description": "",
+					"name": "unk2"
+				}
+			],
+			"description": "Loads a specified Acting script from the specified level from within Unionall",
+			"name": "supervision_ExecuteActingSub"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "coro_id"
+				}
+			],
+			"description": "Loads a specified Unionall coroutine from within Enter/Acting/Sub scripts.",
+			"name": "supervision_ExecuteCommon"
+		},
+		{
+			"args": [
+				{
+					"description": "An entry in the Level list.",
+					"name": "level_id"
+				}
+			],
+			"description": "Loads an Enter script from the specified level.",
+			"name": "supervision_ExecuteEnter"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "level"
+				},
+				{
+					"description": "",
+					"name": "script_id"
+				},
+				{
+					"description": "",
+					"name": "unk2"
+				}
+			],
+			"description": "",
+			"name": "supervision_ExecuteStation"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "level"
+				},
+				{
+					"description": "",
+					"name": "unk1"
+				}
+			],
+			"description": "",
+			"name": "supervision_ExecuteStationCommon"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "level"
+				},
+				{
+					"description": "",
+					"name": "unk1"
+				}
+			],
+			"description": "",
+			"name": "supervision_ExecuteStationCommonSub"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "level"
+				},
+				{
+					"description": "",
+					"name": "script_id"
+				},
+				{
+					"description": "",
+					"name": "unk2"
+				}
+			],
+			"description": "",
+			"name": "supervision_ExecuteStationSub"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "script_id"
+				}
+			],
+			"description": "Loads a specified Acting scene of the level S00P01A",
+			"name": "supervision_ExecuteExport"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "const"
+				}
+			],
+			"description": "",
+			"name": "supervision_ExecuteExportSub"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "level"
+				},
+				{
+					"description": "",
+					"name": "script_id"
+				}
+			],
+			"description": "",
+			"name": "supervision_LoadStation"
+		},
+		{
+			"args": [
+				{
+					"description": "The ID of the sector to unload.",
+					"name": "layer_id"
+				}
+			],
+			"description": "Unloads a sector of the Sub scene.",
+			"name": "supervision_Remove"
+		},
+		{
+			"args": [
+				{
+					"description": "The ID of the sector to unload.",
+					"name": "layer_id"
+				}
+			],
+			"description": "Unloads a sector of the Acting scene.",
+			"name": "supervision_RemoveActing"
+		},
+		{
+			"args": [
+				{
+					"description": "The ID of the sector to unload.",
+					"name": "layer_id"
+				}
+			],
+			"description": "Unloads a sector of the Enter scene.",
+			"name": "supervision_RemoveCommon"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				},
+				{
+					"description": "",
+					"name": "unk1"
+				},
+				{
+					"description": "",
+					"name": "unk2"
+				}
+			],
+			"description": "",
+			"name": "supervision_SpecialActing"
+		},
+		{
+			"args": [
+				{
+					"description": "The ID of the sector to load.",
+					"name": "station_id"
+				}
+			],
+			"description": "Loads a sector of the Sub scene.",
+			"name": "supervision_Station"
+		},
+		{
+			"args": [
+				{
+					"description": "The ID of the sector to load.",
+					"name": "station_id"
+				}
+			],
+			"description": "Loads a sector of the Enter scene.\n\nCan be used to call sectors of an enter scene within acting scenes!",
+			"name": "supervision_StationCommon"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				}
+			],
+			"description": "",
+			"name": "supervision_Suspend"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				},
+				{
+					"description": "",
+					"name": "unk1"
+				},
+				{
+					"description": "",
+					"name": "unk2"
+				}
+			],
+			"description": "",
+			"name": "supervision2_SpecialActing"
+		},
+		{
+			"args": [
+				{
+					"description": "How fast the actor turns. The higher the number, the slower the turn.",
+					"name": "speed"
+				},
+				{
+					"description": "The way that the actor will turn to face the specified direction. 1 = clockwise, 2 = counterclockwise, 10 = the most efficient direction to turn.",
+					"name": "rotationdirection"
+				},
+				{
+					"description": "The direction that the actor will turn to face.",
+					"name": "direction"
+				}
+			],
+			"description": "Makes an actor rotate to a specified direction.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Turn2Direction"
+		},
+		{
+			"args": [
+				{
+					"description": "How fast the actor turns. The higher the number, the slower the turn.",
+					"name": "speed"
+				},
+				{
+					"description": "The way that the actor will turn to face the specified direction. 1 = clockwise, 2 = counterclockwise, 10 = the most efficient direction to turn.",
+					"name": "rotationdirection"
+				},
+				{
+					"description": "The target actor that the actor will turn to face.",
+					"name": "actor_id"
+				}
+			],
+			"description": "Makes an actor rotate to face another actor. Must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Turn2DirectionLives"
+		},
+		{
+			"args": [
+				{
+					"description": "How fast the actor turns. The higher the number, the slower the turn.",
+					"name": "speed"
+				},
+				{
+					"description": "The way that the actor will turn to face the specified direction. 1 = clockwise, 2 = counterclockwise, 10 = the most efficient direction to turn.",
+					"name": "rotationdirection"
+				},
+				{
+					"description": "ID of the target actor from Level List that the actor will turn to face.",
+					"name": "actor_id"
+				}
+			],
+			"description": "Makes an actor rotate to face another actor. Must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Turn2DirectionLives2"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				},
+				{
+					"description": "",
+					"name": "unk1"
+				},
+				{
+					"description": "",
+					"name": "pos_marker"
+				},
+				{
+					"description": "",
+					"name": "unk6"
+				},
+				{
+					"description": "",
+					"name": "unk7"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "Turn2DirectionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "How fast the actor turns. The higher the number, the slower the turn.",
+					"name": "speed"
+				},
+				{
+					"description": "The way that the actor will turn to face the specified direction. 1 = clockwise, 2 = counterclockwise, 10 = the most efficient direction to turn.",
+					"name": "rotationdirection"
+				},
+				{
+					"description": "1: 45 degrees left, 2: 45 degrees right, 3: 90 degrees right, 4: 90 degrees left, 5: 180 degrees",
+					"name": "angle"
+				}
+			],
+			"description": "Makes an actor turn at a certain angle.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "Turn2DirectionTurn"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				},
+				{
+					"description": "",
+					"name": "unk1"
+				},
+				{
+					"description": "",
+					"name": "unk2"
+				},
+				{
+					"description": "",
+					"name": "unk3"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "Turn3"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "direction"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "TurnDirection"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				},
+				{
+					"description": "",
+					"name": "unk1"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "TurnDirectionLives"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				},
+				{
+					"description": "",
+					"name": "unk1"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "TurnDirectionLives2"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				},
+				{
+					"description": "",
+					"name": "pos_marker"
+				}
+			],
+			"description": "",
+			"targeted": true,
+			"name": "TurnDirectionMark"
+		},
+		{
+			"args": [
+				{
+					"description": "The ID of a Lock, ranged from 0-19 (inclusive).",
+					"name": "lock_id"
+				}
+			],
+			"description": "Resumes the routine that was suspended when Lock was called with the specified ''lock_id''.",
+			"name": "Unlock"
+		},
+		{
+			"args": [
+				{
+					"description": "The number of frames that the routine will wait for before resuming.",
+					"name": "duration"
+				}
+			],
+			"description": "Pauses the routine for a set number of frames. After the number of frames, the routine will resume.",
+			"name": "Wait"
+		},
+		{
+			"args": [],
+			"description": "Pauses the routine until the specified actor has finished its animation. After the actor finishes its animation, the routine will resume.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "WaitAnimation"
+		},
+		{
+			"args": [],
+			"description": "Pauses the current routine until [[List of Opcodes#0x2 - back SetBackEffect|back_SetBackEffect]] is called.",
+			"name": "WaitBackEffect"
+		},
+		{
+			"args": [],
+			"description": "Pauses the current routine until [[List of Opcodes#0x12 - back2 SetBackEffect|back2_SetBackEffect]] is called.",
+			"name": "WaitBack2Effect"
+		},
+		{
+			"args": [
+				{
+					"description": "A non-looped music track defined in SOUND/BGM of the ROM. Looped music tracks softlocks the game.",
+					"name": "bgm_id"
+				}
+			],
+			"description": "Pauses the current routine until the specified BGM on the first BGM track has ended. After the BGM ends, the routine will resume.",
+			"name": "WaitBgm"
+		},
+		{
+			"args": [
+				{
+					"description": "A non-looped music track defined in SOUND/BGM of the ROM. Looped music tracks softlocks the game.",
+					"name": "bgm_id"
+				}
+			],
+			"description": "Pauses the current routine until the specified BGM on the second BGM track has ended. After the BGM ends, the routine will resume.",
+			"name": "WaitBgm2"
+		},
+		{
+			"args": [],
+			"description": "Pauses the routine until a DSE event with ID 0xF6 on the current BGM track is triggered. This can be used to sync certain parts of the scene to the background music.",
+			"name": "WaitBgmSignal"
+		},
+		{
+			"args": [],
+			"description": "Pauses the routine until the effect on the specified actor/peformer has ended. After the effect ends, the routine will resume.\n\nThis opcode does not have a parameter for an entity, as it must be used in a with-statement or a targeted routine.",
+			"targeted": true,
+			"name": "WaitEffect"
+		},
+		{
+			"args": [],
+			"description": "",
+			"targeted": true,
+			"name": "WaitEndAnimation"
+		},
+		{
+			"args": [
+				{
+					"description": "The actor that the routine will wait for.",
+					"name": "actor_id"
+				}
+			],
+			"description": "Pauses the routine until the specified actor has finished its action (Move2Position, Slide2Position, etc.). After the actor finishes its action, the routine will resume.",
+			"name": "WaitExecuteLives"
+		},
+		{
+			"args": [
+				{
+					"description": "The ID of the object that the routine will wait for.",
+					"name": "object_id"
+				}
+			],
+			"description": "Pauses the current routine until the specified object has finished its action (Move2Position, Slide2Position, etc.). After the object finishes its action, the routine will resume.",
+			"name": "WaitExecuteObject"
+		},
+		{
+			"args": [
+				{
+					"description": "The ID of the performer that the routine will wait for.",
+					"name": "performer_id"
+				}
+			],
+			"description": "Pauses the current routine until the specified performer has finished its current action (Move2Position, Slide2Position, etc.) After the performer has finished its action, the routine will resume.",
+			"name": "WaitExecutePerformer"
+		},
+		{
+			"args": [],
+			"description": "Pauses the current routine and waits for the screen to fade in. After the screen fades in, the routine will resume.",
+			"name": "WaitFadeIn"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "lock_id"
+				},
+				{
+					"description": "The actor that the routine will wait for.",
+					"name": "actor"
+				}
+			],
+			"description": "Pauses the current routine until a [[List of Opcodes#0x8b - Lock|Lock]] opcode with the specified ''lock_id'' is reached in the specified actor's targeted routine. After the lock is reached, the routine will resume.",
+			"name": "WaitLockLives"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "lock_id"
+				},
+				{
+					"description": "The ID of the object that the routine will wait for.",
+					"name": "object"
+				}
+			],
+			"description": "Pauses the current routine until a [[List of Opcodes#0x8b - Lock|Lock]] opcode with the specified ''lock_id'' is reached in the specified object's targeted routine. After the lock is reached, the routine will resume.",
+			"name": "WaitLockObject"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "lock_id"
+				},
+				{
+					"description": "The ID of the performer that the routine will wait for.",
+					"name": "performer"
+				}
+			],
+			"description": "Pauses the current routine until a [[List of Opcodes#0x8b - Lock|Lock]] opcode with the specified ''lock_id'' is reached in the specified performer's targeted routine. After the lock is reached, the routine will resume.",
+			"name": "WaitLockPerformer"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "lock_id"
+				}
+			],
+			"description": "Pauses the current routine until a [[List of Opcodes#0x8b - Lock|Lock]] opcode with the specified ''lock_id'' is reached in def 0. After the lock is reached, the routine will resume.",
+			"name": "WaitLockSupervision"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				}
+			],
+			"description": "",
+			"name": "WaitMe"
+		},
+		{
+			"args": [],
+			"description": "",
+			"name": "WaitMoveCamera"
+		},
+		{
+			"args": [],
+			"description": "",
+			"name": "WaitMoveCamera2"
+		},
+		{
+			"args": [
+				{
+					"description": "Minimum number of frames that the routine will wait for before resuming.",
+					"name": "duration_min"
+				},
+				{
+					"description": "Maximum number of frames that the routine will wait for before resuming.",
+					"name": "duration_max"
+				}
+			],
+			"description": "Pauses the routine for a random number of frames. After the number of frames, the routine will resume.",
+			"name": "WaitRandom"
+		},
+		{
+			"args": [],
+			"description": "Waits until screen_FadeIn finishes executing.",
+			"name": "WaitScreenFade"
+		},
+		{
+			"args": [],
+			"description": "Waits until screen_FadeInAll finishes executing.",
+			"name": "WaitScreenFadeAll"
+		},
+		{
+			"args": [],
+			"description": "Waits until screen2_FadeIn finishes executing.",
+			"name": "WaitScreen2Fade"
+		},
+		{
+			"args": [
+				{
+					"description": "The ID of the sound to wait for the end of before resuming the routine.",
+					"name": "se_id"
+				}
+			],
+			"description": "Pauses the current routine until the specified sound effect has ended. After the sound effect ends, the routine will resume.",
+			"name": "WaitSe"
+		},
+		{
+			"args": [],
+			"description": "",
+			"name": "WaitSpecialActing"
+		},
+		{
+			"args": [],
+			"description": "",
+			"name": "WaitSubScreen"
+		},
+		{
+			"args": [],
+			"description": "",
+			"name": "WaitSubSpecialActing"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "world_map_marker_id"
+				}
+			],
+			"description": "Shows a blinking world map marker.",
+			"name": "worldmap_BlinkMark"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				}
+			],
+			"description": "",
+			"name": "worldmap_ChangeLevel"
+		},
+		{
+			"args": [],
+			"description": "Remove the yellow arrow from the world map.",
+			"name": "worldmap_DeleteArrow"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "world_map_marker_id"
+				}
+			],
+			"description": "Moves the camera to the specified world map marker.",
+			"name": "worldmap_MoveCamera"
+		},
+		{
+			"args": [],
+			"description": "Removes a textbox with the world map marker's name from the Top Screen",
+			"name": "worldmap_OffMessage"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "world_map_marker_id"
+				}
+			],
+			"description": "Shows an arrow pointing to a specified world map marker",
+			"name": "worldmap_SetArrow"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				}
+			],
+			"description": "",
+			"name": "worldmap_SetCamera"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				}
+			],
+			"description": "",
+			"name": "worldmap_SetLevel"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				}
+			],
+			"description": "",
+			"name": "worldmap_SetMark"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "txt"
+				}
+			],
+			"description": "",
+			"name": "worldmap_SetMessage"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "world_map_marker_id"
+				}
+			],
+			"description": "Shows a textbox on the Top Screen with the specified world map marker's name.",
+			"name": "worldmap_SetMessagePlace"
+		},
+		{
+			"args": [
+				{
+					"description": "",
+					"name": "unk0"
+				}
+			],
+			"description": "",
+			"name": "worldmap_SetMode"
+		}
+	]
+}

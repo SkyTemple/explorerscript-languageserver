@@ -1,0 +1,56 @@
+{
+	"name": "ExplorerScript",
+  
+	"identifier": "explorerscript",
+  
+	"extensions": [ ".exps" ],
+	"mimetypes": [
+	  "text/x-explorerscript",
+	  "application/x-exps",
+	  "text/x-exps-source",
+	  "application/x-exps-source"
+	],
+  
+	"comments": {
+	  "lineComment": "//",
+	  "blockComment": [ "/*", "*/" ]
+	},
+  
+	"brackets": [
+	  ["(", ")"],
+	  ["[", "]"],
+	  ["{", "}"]
+	],
+	"autoClosingPairs": [
+	  { "open": "(", "close": ")" },
+	  { "open": "[", "close": "]" },
+	  { "open": "{", "close": "}" },
+	  { "open": "\"", "close": "\"", "notIn": ["string"] },
+	  { "open": "'", "close": "'", "notIn": ["string", "comment"] }
+	],
+	"surroundingPairs": [
+	  ["(", ")"],
+	  ["[", "]"],
+	  ["{", "}"],
+	  ["\"", "\""],
+	  ["'", "'"]
+	],
+  
+	"autoCloseBefore": ";:.,=}])> \n\t",
+  
+	"wordPattern": "(\\$?[%]?[a-zA-Z_][a-zA-Z0-9_]*|[0-9]+(\\.[0-9]+)?)",
+  
+	"indentationRules": {
+	  "increaseIndentPattern": 
+		"(?x)^.*(\\{[^}]*$|\\([^)]*$|\\[[^\\]]*$)",
+	  "decreaseIndentPattern": 
+		"(?x)^\\s*(\\}|\\)|\\])"
+	},
+
+	"folding": {
+	  "markers": {
+		"start": "^\\s*// region\\b",
+		"end": "^\\s*// endregion\\b"
+	  }
+	}
+  }

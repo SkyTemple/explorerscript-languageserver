@@ -1,0 +1,55 @@
+{
+	"name": "explorerscript-vscode-extension",
+	"displayName": "ExplorerScript",
+	"description": "ExplorerScript language support for VS Code",
+	"version": "0.0.1",
+	"publisher": "techticks",
+	"license": "GPL-3.0-only",
+	"engines": {
+		"vscode": "^1.28.0"
+	},
+	"categories": [
+		"Programming Languages"
+	],
+	"main": "vscode-extension/out/extension.js",
+	"contributes": {
+		"languages": [
+			{
+				"id": "explorerscript",
+				"extensions": [
+					".exps"
+				],
+				"aliases": [
+					"explorerscript",
+					"exps"
+				],
+				"configuration": "./vscode-extension/language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "explorerscript",
+				"scopeName": "source.exps",
+				"path": "./vscode-extension/syntaxes/exps.tmLanguage.json"
+			}
+		],
+		"configuration": {
+			"title": "ExplorerScript",
+			"properties": {
+				"explorerscript.romPath": {
+					"type": "string",
+					"default": "rom.nds",
+					"description": "The path to the project's ROM file"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"build": "cd vscode-extension && npm run build && cd ../server && npm run build"
+	},
+	"dependencies": {
+		"typescript": "^5.7.2",
+		"vscode": "^1.1.37",
+		"vscode-languageclient": "^9.0.1"
+	}
+}

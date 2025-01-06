@@ -1,0 +1,127 @@
+{  
+	"name": "ExplorerScript",
+	"scopeName": "source.exps",
+  	"patterns": [
+	  { "include": "#comments" },
+	  { "include": "#strings" },
+	  { "include": "#numbers" },
+	  { "include": "#labels" },
+	  { "include": "#functions" },
+	  { "include": "#keywords" },
+	  { "include": "#variables" }
+	],
+	"repository": {
+	  "comments": {
+		"patterns": [
+		  {
+			"name": "comment.line.double-slash.exps",
+			"match": "//.*$"
+		  },
+		  {
+			"name": "comment.block.exps",
+			"begin": "/\\*",
+			"end": "\\*/",
+			"patterns": [
+			  {
+				"name": "comment.block.exps",
+				"match": "."
+			  }
+			]
+		  }
+		]
+	  },
+	  "strings": {
+		"patterns": [
+		  {
+			"name": "string.quoted.double.exps",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+			  {
+				"name": "constant.character.escape.exps",
+				"match": "\\\\."
+			  }
+			]
+		  },
+		  {
+			"name": "string.quoted.single.exps",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+			  {
+				"name": "constant.character.escape.exps",
+				"match": "\\\\."
+			  }
+			]
+		  }
+		]
+	  },
+	  "numbers": {
+		"patterns": [
+		  {
+			"name": "constant.numeric.decimal.exps",
+			"match": "\\b-?\\d+\\.\\d+\\b"
+		  },
+		  {
+			"name": "constant.numeric.decimal.exps",
+			"match": "\\b-?\\d+\\b"
+		  },
+		  {
+			"name": "constant.numeric.hex.exps",
+			"match": "\\b-?0[xX][0-9A-Fa-f]+\\b"
+		  },
+		  {
+			"name": "constant.numeric.octal.exps",
+			"match": "\\b-?0[oO][0-7]+\\b"
+		  },
+		  {
+			"name": "constant.numeric.binary.exps",
+			"match": "\\b-?0[bB][01]+\\b"
+		  }
+		]
+	  },
+	  "keywords": {
+		"patterns": [
+		  {
+			"name": "keyword.control.exps",
+			"match": "\\b(?:import|coro|def|macro|for_actor|for_object|for_performer|alias|previous|not|if|elseif|else|forever|with|switch|debug|edit|variation|random|sector|menu2|menu|case|default|clear|reset|init|scn|dungeon_result|adventure_log|continue|break|break_loop|return|end|hold|jump|call|while|for|const)\\b"
+		  },
+		  {
+			"name": "keyword.other.exps",
+			"match": "\\b(?:TRUE|FALSE|actor|object|performer|value|dungeon_mode)\\b"
+		  }
+		]
+	  },
+	  "functions": {
+		"patterns": [
+		  {
+			"match": "\\b(macro)\\s([a-zA-Z_][a-zA-Z0-9_]*)\\b",
+			"captures": {
+				"1": {
+					"name": "keyword.control.exps"
+				},
+				"2": {
+					"name": "entity.name.function.exps"
+				}
+			}
+		  }
+		]
+	  },
+	  "labels": {
+		"patterns": [
+		  {
+			"name": "entity.name.label.exps",
+			"match": "\\b[@§][a-zA-Z_][a-zA-Z0-9_]*\\b"
+		  }
+		]
+	  },
+	  "variables": {
+		"patterns": [
+		  {
+			"name": "variable.other.exps",
+			"match": "([\\$%]|\\b)?[a-zA-Z_][a-zA-Z0-9_]*\\b"
+		  }
+		]
+	  }
+	}
+  }
