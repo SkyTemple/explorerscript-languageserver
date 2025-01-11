@@ -1,6 +1,6 @@
 # ExplorerScript Language Server and IDE Extensions
 
-This repository contains a [Language Server Protocol]() implementation for the [ExplorerScript](https://github.com/SkyTemple/ExplorerScript) language and IDE integration plugins.
+This repository contains a [Language Server Protocol](https://microsoft.github.io/language-server-protocol/) implementation for the [ExplorerScript](https://github.com/SkyTemple/ExplorerScript) language and IDE integration plugins.
 
 ## Features
 
@@ -33,17 +33,16 @@ In order to use ExplorerScript language features in JetBrains IDEs, you will nee
 5. Click the "+" button and select the downloaded folder. A new item `explorerscript-vscode-extension` should now be visible at the end of the list.
 6. Click *Ok* to save and quit the Settings dialog. ExplorerScript files (`.exps`) should now have syntax highlighting.
 
+### Language Server Plug-in
+
+TBD
+
 ## Project Setup
 
 1. Open a project containing ExplorerScript files (e.g. a `.skytemple` folder) and open any ExplorerScript (`.exps`) file.
 2. Configure the path to your ROM in settings. The path can either be absolute or relative to the workspace directory (`{workspace folder}/rom.nds` is used by default).
     - In VS Code, navigate to *File > Preferences > Settings* (or *Code > Settings > Settings* on macOS), then configure the ROM path under *Extensions > ExplorerScript > Rom Path*.
     You can use the *Workspace* tab to configure a path specific to your current workspace.
-
-
-### Language Server Plug-in
-
-TBD
 
 ## Referenced Sources
 - https://github.com/SkyTemple/ExplorerScript
