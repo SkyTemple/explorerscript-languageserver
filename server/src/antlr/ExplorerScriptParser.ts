@@ -10,7 +10,7 @@ import {
 	TerminalNode,
 	Token, TokenStream,
 } from 'antlr4';
-import ExplorerScriptVisitor from "./ExplorerScriptVisitor.js";
+import ExplorerScriptVisitor from "./ExplorerScriptVisitor";
 
 export default class ExplorerScriptParser extends Parser {
 	public static readonly T__0 = 1;

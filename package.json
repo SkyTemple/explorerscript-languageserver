@@ -5,13 +5,25 @@
 	"version": "0.0.1",
 	"publisher": "techticks",
 	"license": "GPL-3.0-only",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/SkyTemple/explorerscript-languageserver"
+	},
 	"engines": {
-		"vscode": "^1.28.0"
+		"vscode": "^1.75.0"
 	},
 	"categories": [
 		"Programming Languages"
 	],
 	"main": "vscode-extension/out/extension.js",
+	"files": [
+		"LICENSE",
+		"package.json",
+		"vscode-extension/out/**/*.js",
+		"vscode-extension/language-configuration.json",
+		"vscode-extension/syntaxes/exps.tmLanguage.json",
+		"server/out/server.mjs"
+	],
 	"contributes": {
 		"languages": [
 			{
@@ -45,11 +57,7 @@
 		}
 	},
 	"scripts": {
-		"build": "cd vscode-extension && npm run build && cd ../server && npm run build"
-	},
-	"dependencies": {
-		"typescript": "^5.7.2",
-		"vscode": "^1.1.37",
-		"vscode-languageclient": "^9.0.1"
+		"build": "cd vscode-extension && npm run build && cd ../server && npm run build",
+		"package": "npm run build && vsce package"
 	}
 }

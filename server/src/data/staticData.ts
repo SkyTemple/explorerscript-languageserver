@@ -1,8 +1,10 @@
-import { readFileSync } from 'node:fs';
 import { CompletionItem, CompletionItemKind, InsertTextFormat, ParameterInformation, SignatureInformation } from 'vscode-languageserver';
-import { CommonRoutineInfo, Direction, GameVariable, GroundStateStruct, LevelInfo, LivesEntityInfo, MenuId, ObjectInfo, OpCode, ProcessSpecialId, SpriteEffectId } from './types.js';
-import { buildConstantStore, StaticConstantStore } from './constantStore.js';
-import { RomRegion } from './romData.js';
+import { CommonRoutineInfo, Direction, GameVariable, GroundStateStruct, LevelInfo, LivesEntityInfo, MenuId, ObjectInfo, OpCode, ProcessSpecialId, SpriteEffectId } from './types';
+import { buildConstantStore, StaticConstantStore } from './constantStore';
+import { RomRegion } from './romData';
+
+import * as scriptData from '../../data/pmd2scriptdata.json';
+import * as opcodeDocs from '../../data/opcode_descriptions.json';
 
 // Static data that is loaded once from `pmd2scriptdata.json`
 interface ScriptData {
@@ -33,11 +35,10 @@ interface RegionalData {
 	objectsList: ObjectInfo[];
 };
 
-// Types for opcode_descriptions.json
+// Types for opcode_descriptionson
 interface OpcodeDocs {
 	args: ArgumentDocs[];
 	description: string;
-	index: number;
 	name: string;
 	targeted?: boolean;
 }
@@ -54,21 +55,14 @@ export const DUNGEON_MODES = {
 	OPEN_AND_REQUEST: 3,
 };
 
-export let SCRIPT_DATA: ScriptData = loadScriptData();
+export let SCRIPT_DATA: ScriptData = scriptData as ScriptData;
 export let OPCODE_DOCS: Map<string, OpcodeDocs[]> = loadOpcodeDocs();
 export let GLOBAL_OPCODE_COMPLETION_ITEMS: CompletionItem[] = buildOpCodeCompletionItems();
 export let GLOBAL_OPCODE_COMPLETION_ITEMS_BY_NAME: Map<string, CompletionItem[]> = buildOpCodeCompletionItemsByName();
 
-function loadScriptData(): ScriptData {
-	const scriptData = readFileSync('data/pmd2scriptdata.json', 'utf8');
-	return JSON.parse(scriptData);
-}
-
 function loadOpcodeDocs(): Map<string, OpcodeDocs[]> {
-	const opcodeDocs = readFileSync('data/opcode_descriptions.json', 'utf8');
-	const opcodeDocsParsed: OpcodeDocs[] = JSON.parse(opcodeDocs).opcodes;
 	const opcodeDocsMap = new Map<string, OpcodeDocs[]>();
-	for (const doc of opcodeDocsParsed) {
+	for (const doc of opcodeDocs.opcodes) {
 		if (!opcodeDocsMap.has(doc.name)) {
 			opcodeDocsMap.set(doc.name, []);
 		}
@@ -109,7 +103,7 @@ function buildOpCodeCompletionItems(): CompletionItem[] {
 	const opCodeCompletionItems: CompletionItem[] = [];
 
 	let previousOpCodeName = '';
-	let consecutiveItemsWithSameName = 0; // TODO: this is dumb, but indices in opcode_descriptions.json are broken
+	let consecutiveItemsWithSameName = 0; // TODO: this is dumb, but indices in opcode_descriptionson are broken
 	for (const opCode of SCRIPT_DATA.common.opCodes) {
 		if (opCode.name === previousOpCodeName) {
 			consecutiveItemsWithSameName++;
@@ -144,7 +138,6 @@ function buildOpCodeCompletionItemsByName(): Map<string, CompletionItem[]> {
 }
 
 export function reloadScriptData() {
-	SCRIPT_DATA = loadScriptData();
 	GLOBAL_OPCODE_COMPLETION_ITEMS = buildOpCodeCompletionItems();
 	GLOBAL_OPCODE_COMPLETION_ITEMS_BY_NAME = buildOpCodeCompletionItemsByName();
 }

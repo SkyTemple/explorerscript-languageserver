@@ -13,7 +13,7 @@ export function activate(context: ExtensionContext) {
     'server/'
   );
   const serverModule = context.asAbsolutePath(
-    'server/out/server.js'
+    'server/out/server.mjs'
   );
 
   const serverOptions: ServerOptions = {
