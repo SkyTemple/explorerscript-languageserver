@@ -1,9 +1,11 @@
 import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver";
-import { PrimitiveContext } from "../../antlr/ExplorerScriptParser.js";
-import { CompileHandler } from "./interface.js";
-import { CompilerContext } from "../statement.js";
-import { diagnosticForContext } from "../../diagnosticHelpers.js";
-import { Coroutine, Macro, Routine } from "../../symbols.js";
+import { PrimitiveContext } from "../../antlr/ExplorerScriptParser";
+import { CompileHandler } from "./interface";
+import { CompilerContext } from "../statement";
+import { diagnosticForContext } from "../../diagnosticHelpers";
+import { Coroutine, Macro, Routine } from "../../symbols";
+import { ExplorerScriptStaticConstant } from "../../data/constantStore";
+import { UserConstant } from "../symbols";
 
 export class PrimitiveCompileHandler implements CompileHandler<PrimitiveContext> {
   constructor(private _compilerContext: CompilerContext, private _parent: Routine | Coroutine | Macro | undefined) {
@@ -12,12 +14,8 @@ export class PrimitiveCompileHandler implements CompileHandler<PrimitiveContext>
   validate(ctx: PrimitiveContext): Diagnostic[] {
 	if (ctx.IDENTIFIER()) {
 		const name = ctx.IDENTIFIER().getText();
-
-		let constantExists = this._compilerContext.staticConstants.byName.has(name)
-			|| this._compilerContext.allSymbols.getGlobalConstantByName(name)
-			|| this._parent?.scopedConstants.find(c => c.name === name);
 		
-		if (!constantExists) {
+		if (!this._findConstant(name)) {
 			return [diagnosticForContext(
 				ctx,
 				`Unknown constant \`${name}\``,
@@ -29,8 +27,23 @@ export class PrimitiveCompileHandler implements CompileHandler<PrimitiveContext>
 	}
 
 	if (ctx.VARIABLE()) {
-		const name = ctx.VARIABLE().getText();
-		if (!(this._parent instanceof Macro)) {
+		const text = ctx.VARIABLE().getText();
+		const prefix = text[0];
+		const name = text.slice(1);
+
+		if (this._parent instanceof Macro) {
+			// Find a match (excluding the `$`/`%` prefix)
+			let variableExists = this._parent?.args.find(a => a.name.slice(1) === name);
+			if (variableExists) {
+				return [];
+			} else if (prefix === '%') {
+				return [diagnosticForContext(
+					ctx,
+					`Undefined macro argument \`${name}\``,
+					DiagnosticSeverity.Error
+				)];
+			}
+		} else if (prefix === '%') {
 			return [diagnosticForContext(
 				ctx,
 				`Variables can only be used in macros`,
@@ -38,18 +51,23 @@ export class PrimitiveCompileHandler implements CompileHandler<PrimitiveContext>
 			)];
 		}
 
-		let variableExists = this._parent?.args.find(a => a.name === name);
-		if (!variableExists) {
+		// Find a matching game variable
+		const gameVar = this._compilerContext.staticConstants.byName.get(name);
+		if (!gameVar || gameVar.type !== 'variable') {
 			return [diagnosticForContext(
 				ctx,
-				`Undefined macro variable \`${name}\``,
+				`Unknown variable \`${name}\``,
 				DiagnosticSeverity.Error
 			)];
-		} else {
-			return [];
 		}
 	}
 
 	return [];
+  }
+
+  private _findConstant(name: string): ExplorerScriptStaticConstant | UserConstant | undefined {
+	return this._compilerContext.staticConstants.byName.get(name)
+			?? this._compilerContext.allSymbols.getGlobalConstantByName(name)
+			?? this._parent?.scopedConstants.find(c => c.name === name);
   }
 }

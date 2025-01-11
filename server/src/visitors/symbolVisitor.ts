@@ -1,11 +1,11 @@
 import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver";
-import ExplorerScriptVisitor from "../antlr/ExplorerScriptVisitor.js";
-import { ContextTargetType, Coroutine, Import, Label, Macro, MacroArg, Routine, SymbolStore, UserConstant } from "../symbols.js";
-import { Constant_assignContext, Coro_defContext, For_target_defContext, Import_stmtContext, MacrodefContext, Simple_defContext } from "../antlr/ExplorerScriptParser.js";
-import { singlelineStringLiteral } from "../utils.js";
-import { diagnosticForContext, diagnosticForToken } from "../diagnosticHelpers.js";
+import ExplorerScriptVisitor from "../antlr/ExplorerScriptVisitor";
+import { ContextTargetType, Coroutine, Import, Label, Macro, MacroArg, Routine, SymbolStore, UserConstant } from "../symbols";
+import { Constant_assignContext, Coro_defContext, For_target_defContext, Import_stmtContext, MacrodefContext, Simple_defContext } from "../antlr/ExplorerScriptParser";
+import { singlelineStringLiteral } from "../utils";
+import { diagnosticForContext, diagnosticForToken } from "../diagnosticHelpers";
 import { ParserRuleContext } from "antlr4";
-import { ScopedSymbolVisitor } from "./scopedConstants.js";
+import { ScopedSymbolVisitor } from "./scopedConstants";
 
 export class SymbolVisitor extends ExplorerScriptVisitor<void> {
   macroAndConstantsOnly: boolean;

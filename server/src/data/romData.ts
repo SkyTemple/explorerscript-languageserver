@@ -1,9 +1,9 @@
 import { existsSync } from "fs";
-import { connection } from "../server.js";
-import { LevelInfo, LivesEntityInfo, ObjectInfo } from "./types.js";
-import type { NitroFS } from "nitro-fs";
+import { connection } from "../server";
+import { LevelInfo, LivesEntityInfo, ObjectInfo } from "./types";
+import { NitroFS } from "nitro-fs";
 import { readFile } from "fs/promises";
-import { buildConstantStore, StaticConstantStore } from "./constantStore.js";
+import { buildConstantStore, StaticConstantStore } from "./constantStore";
 
 export type RomRegion = 'na' | 'eu' | 'jp';
 
@@ -34,7 +34,6 @@ export class RomData {
     // This is extremely inefficient, but the nitro-fs library requires a buffer and I currently don't feel like writing a custom library.
     const rom = (await readFile(romPath)).buffer;
 
-    const { NitroFS } = await import('nitro-fs');
     const nitroFS = NitroFS.fromRom(rom);
 
     that.region = extractRegion(nitroFS.cartridgeHeader.gameCode);

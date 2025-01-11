@@ -1,8 +1,8 @@
 import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver";
-import { Constant_assignContext, LabelContext } from "../antlr/ExplorerScriptParser.js";
-import ExplorerScriptVisitor from "../antlr/ExplorerScriptVisitor.js";
-import { diagnosticForContext } from "../diagnosticHelpers.js";
-import { Label, UserConstant } from "../symbols.js";
+import { Constant_assignContext, LabelContext } from "../antlr/ExplorerScriptParser";
+import ExplorerScriptVisitor from "../antlr/ExplorerScriptVisitor";
+import { diagnosticForContext } from "../diagnosticHelpers";
+import { Label, UserConstant } from "../symbols";
 
 export class ScopedSymbolVisitor extends ExplorerScriptVisitor<void> {
   scopeConstants: UserConstant[] = [];

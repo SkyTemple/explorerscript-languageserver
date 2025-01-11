@@ -1,9 +1,9 @@
 import { URI } from "vscode-uri";
 import { existsSync } from "fs";
-import { getDocumentSymbols } from "./server.js";
+import { getDocumentSymbols } from "./server";
 import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver";
-import { diagnosticForRange } from "./diagnosticHelpers.js";
-import { CompositeSymbolStore, SymbolStore } from "./symbols.js";
+import { diagnosticForRange } from "./diagnosticHelpers";
+import { CompositeSymbolStore, SymbolStore } from "./symbols";
 
 // Searches for a folder named "Macros" in any of the parent directories of the current file
 export function findMacrosFolder(currentFile: string): string | undefined {

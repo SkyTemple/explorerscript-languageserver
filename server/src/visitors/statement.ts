@@ -1,14 +1,14 @@
 import { ParserRuleContext } from "antlr4";
 import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver";
-import { CallContext, Case_h_menu2Context, Case_h_menuContext, Case_h_opContext, Cntrl_stmtContext, Coro_defContext, Ctx_blockContext, DefaultContext, Else_blockContext, Elseif_blockContext, For_blockContext, For_target_defContext, Forever_blockContext, If_blockContext, If_h_bitContext, If_h_negatableContext, If_h_opContext, If_h_scnContext, If_headerContext, JumpContext, Macro_callContext, MacrodefContext, Message_switch_blockContext, OperationContext, PrimitiveContext, Simple_defContext, Single_case_blockContext, Switch_blockContext, Switch_headerContext, While_blockContext } from "../antlr/ExplorerScriptParser.js";
-import ExplorerScriptVisitor from "../antlr/ExplorerScriptVisitor.js";
-import { StaticConstantStore } from "../data/constantStore.js";
-import { diagnosticForContext } from "../diagnosticHelpers.js";
-import { CompositeSymbolStore, Coroutine, Macro, Routine, SymbolStore } from "../symbols.js";
-import { CompileHandler } from "./compileHandlers/interface.js";
-import { MacroCallCompileHandler } from "./compileHandlers/macroCall.js";
-import { PrimitiveCompileHandler } from "./compileHandlers/primitive.js";
-import { OperationCompileHandler } from "./compileHandlers/operation.js";
+import { CallContext, Case_h_menu2Context, Case_h_menuContext, Case_h_opContext, Cntrl_stmtContext, Coro_defContext, Ctx_blockContext, DefaultContext, Else_blockContext, Elseif_blockContext, For_blockContext, For_target_defContext, Forever_blockContext, If_blockContext, If_h_bitContext, If_h_negatableContext, If_h_opContext, If_h_scnContext, If_headerContext, JumpContext, Macro_callContext, MacrodefContext, Message_switch_blockContext, OperationContext, PrimitiveContext, Simple_defContext, Single_case_blockContext, Switch_blockContext, Switch_headerContext, While_blockContext } from "../antlr/ExplorerScriptParser";
+import ExplorerScriptVisitor from "../antlr/ExplorerScriptVisitor";
+import { StaticConstantStore } from "../data/constantStore";
+import { diagnosticForContext } from "../diagnosticHelpers";
+import { CompositeSymbolStore, Coroutine, Macro, Routine, SymbolStore } from "../symbols";
+import { CompileHandler } from "./compileHandlers/interface";
+import { MacroCallCompileHandler } from "./compileHandlers/macroCall";
+import { PrimitiveCompileHandler } from "./compileHandlers/primitive";
+import { OperationCompileHandler } from "./compileHandlers/operation";
 
 export interface CompilerContext {
   fileSymbols: SymbolStore;

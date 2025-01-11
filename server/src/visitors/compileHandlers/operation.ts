@@ -1,10 +1,10 @@
 import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver";
-import { OperationContext } from "../../antlr/ExplorerScriptParser.js";
-import { CompileHandler } from "./interface.js";
-import { CompilerContext } from "../statement.js";
-import { GLOBAL_OPCODE_COMPLETION_ITEMS_BY_NAME } from "../../data/staticData.js";
-import { diagnosticForContext } from "../../diagnosticHelpers.js";
-import { OpCode } from "../../data/types.js";
+import { OperationContext } from "../../antlr/ExplorerScriptParser";
+import { CompileHandler } from "./interface";
+import { CompilerContext } from "../statement";
+import { GLOBAL_OPCODE_COMPLETION_ITEMS_BY_NAME } from "../../data/staticData";
+import { diagnosticForContext } from "../../diagnosticHelpers";
+import { OpCode } from "../../data/types";
 
 export class OperationCompileHandler implements CompileHandler<OperationContext> {
   constructor(private _compilerContext: CompilerContext, private _isInWithBlock: boolean) {

@@ -17,6 +17,6 @@ public class LspServerProvider : LspServerSupportProvider {
 
 private class LspServerProviderDescriptor(project: Project) : ProjectWideLspServerDescriptor(project, "ExplorerScript") {
     override fun isSupportedFile(file: VirtualFile) = file.extension == "exps"
-    override fun createCommandLine() = GeneralCommandLine("node", "out/server.js", "--stdio")
+    override fun createCommandLine() = GeneralCommandLine("node", "out/server.mjs", "--stdio")
         .withWorkDirectory("/Users/admin/repos/explorerscript-vscode/server") // todo: ship server with the plugin
 }

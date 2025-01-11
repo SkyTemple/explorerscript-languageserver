@@ -1,7 +1,7 @@
 import { CompletionItem, CompletionItemKind } from "vscode-languageserver";
-import { LevelInfo, LivesEntityInfo, ObjectInfo } from "./types.js";
-import { RomRegion } from "./romData.js";
-import { DUNGEON_MODES, SCRIPT_DATA } from "./staticData.js";
+import { LevelInfo, LivesEntityInfo, ObjectInfo } from "./types";
+import { RomRegion } from "./romData";
+import { DUNGEON_MODES, SCRIPT_DATA } from "./staticData";
 
 export type ConstantType = 'variable'
 	| 'faceName'

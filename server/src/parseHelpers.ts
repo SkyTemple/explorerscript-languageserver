@@ -1,5 +1,5 @@
 import { CommonTokenStream, ErrorNode, ParserRuleContext, Token } from "antlr4";
-import { connection } from "./server.js";
+import { connection } from "./server";
 
 interface FuncCallInfo {
   name: string;

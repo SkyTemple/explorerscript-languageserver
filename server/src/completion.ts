@@ -1,13 +1,13 @@
 import { TextDocument } from "vscode-languageserver-textdocument";
 import { CompletionItem, CompletionItemKind, InsertTextFormat, Position } from "vscode-languageserver";
-import { GLOBAL_OPCODE_COMPLETION_ITEMS } from "./data/staticData.js";
-import { connection, ParsedDocument } from "./server.js";
-import { findContextAtOffset } from "./parseHelpers.js";
-import { Ctx_blockContext, DefaultContext, Else_blockContext, Elseif_blockContext, For_blockContext, Forever_blockContext, Func_suiteContext, If_blockContext, Import_stmtContext, Single_case_blockContext, StartContext, Switch_blockContext, Switch_headerContext, While_blockContext } from "./antlr/ExplorerScriptParser.js";
-import { createSymbolCompletionItems, createScopedCompletionItems } from "./symbols.js";
-import { findMacrosFolder } from "./imports.js";
+import { GLOBAL_OPCODE_COMPLETION_ITEMS } from "./data/staticData";
+import { connection, ParsedDocument } from "./server";
+import { findContextAtOffset } from "./parseHelpers";
+import { Ctx_blockContext, DefaultContext, Else_blockContext, Elseif_blockContext, For_blockContext, Forever_blockContext, Func_suiteContext, If_blockContext, Import_stmtContext, Single_case_blockContext, StartContext, Switch_blockContext, Switch_headerContext, While_blockContext } from "./antlr/ExplorerScriptParser";
+import { createSymbolCompletionItems, createScopedCompletionItems } from "./symbols";
+import { findMacrosFolder } from "./imports";
 import { readdirSync } from "fs";
-import { StaticConstantStore } from "./data/constantStore.js";
+import { StaticConstantStore } from "./data/constantStore";
 
 export async function buildCompletionItems(parsed: ParsedDocument | undefined, doc: TextDocument, position: Position, staticConstants: StaticConstantStore): Promise<CompletionItem[] | null> {
   let completionItems: CompletionItem[] = [

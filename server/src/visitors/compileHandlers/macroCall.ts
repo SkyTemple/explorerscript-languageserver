@@ -1,8 +1,8 @@
 import { Diagnostic, DiagnosticSeverity } from "vscode-languageserver";
-import { Macro_callContext } from "../../antlr/ExplorerScriptParser.js";
-import { CompileHandler } from "./interface.js";
-import { CompilerContext } from "../statement.js";
-import { diagnosticForContext } from "../../diagnosticHelpers.js";
+import { Macro_callContext } from "../../antlr/ExplorerScriptParser";
+import { CompileHandler } from "./interface";
+import { CompilerContext } from "../statement";
+import { diagnosticForContext } from "../../diagnosticHelpers";
 
 export class MacroCallCompileHandler implements CompileHandler<Macro_callContext> {
   constructor(private _compilerContext: CompilerContext) {

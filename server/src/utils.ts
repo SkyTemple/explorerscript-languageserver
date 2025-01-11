@@ -1,5 +1,5 @@
 import { ParserRuleContext, Token } from "antlr4";
-import { String_valueContext } from "./antlr/ExplorerScriptParser.js";
+import { String_valueContext } from "./antlr/ExplorerScriptParser";
 import { Range } from "vscode-languageserver";
 
 // Adapted from https://github.com/SkyTemple/ExplorerScript/blob/80170a56a41309ce7dc9ec4798fbc5367b941c49/explorerscript/ssb_converting/compiler/utils.py#L256

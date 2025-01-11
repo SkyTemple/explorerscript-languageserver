@@ -1,8 +1,8 @@
 import { CompletionItem, CompletionItemKind, Diagnostic, DiagnosticSeverity, ParameterInformation, Range, SignatureInformation, SymbolInformation, SymbolKind } from "vscode-languageserver";
-import { Constant_assignContext, Coro_defContext, For_target_defContext, Import_stmtContext, LabelContext, MacrodefContext, PrimitiveContext, Simple_defContext } from "./antlr/ExplorerScriptParser.js";
+import { Constant_assignContext, Coro_defContext, For_target_defContext, Import_stmtContext, LabelContext, MacrodefContext, PrimitiveContext, Simple_defContext } from "./antlr/ExplorerScriptParser";
 import { ParserRuleContext, TerminalNode } from "antlr4";
-import { getCtxRange, getTokenRange } from "./utils.js";
-import { findParentRuleContext } from "./parseHelpers.js";
+import { getCtxRange, getTokenRange } from "./utils";
+import { findParentRuleContext } from "./parseHelpers";
 
 export type Symbol = Import | UserConstant | Macro | Routine | Coroutine | Label;
 export type ContextTargetType = 'actor' | 'object' | 'performer';

@@ -1,5 +1,5 @@
 import { DidChangeConfigurationParams } from "vscode-languageserver";
-import { connection, hasConfigurationCapability } from "./server.js";
+import { connection, hasConfigurationCapability } from "./server";
 
 interface Settings {
   romPath: string;
@@ -7,21 +7,31 @@ interface Settings {
 
 export const DEFAULT_SETTINGS: Readonly<Settings> = Object.freeze({ romPath: 'rom.nds' });
 let globalSettings: Settings = DEFAULT_SETTINGS;
-const documentSettings: Map<string, Thenable<Settings>> = new Map();
+const documentSettings: Map<string, Settings> = new Map();
 
-export function getDocumentSettings(resource: string): Thenable<Settings> {
+export async function getDocumentSettings(resource: string): Promise<Settings> {
   if (!hasConfigurationCapability) {
-    return Promise.resolve(globalSettings);
+    return globalSettings;
   }
-  let result = documentSettings.get(resource);
-  if (!result) {
-    result = connection.workspace.getConfiguration({
+  let settings = documentSettings.get(resource);
+  if (settings) {
+    return settings;
+  }
+
+  if (!settings) {
+    settings = await connection.workspace.getConfiguration({
       scopeUri: resource,
       section: 'explorerscript'
     });
-    documentSettings.set(resource, result!);
+    if (!settings) {
+      settings = structuredClone(DEFAULT_SETTINGS);
+    }
+    documentSettings.set(resource, {
+      ...DEFAULT_SETTINGS,
+      ...settings
+    });
   }
-  return result!;
+  return settings!;
 }
 
 export function deleteDocumentSettings(resource: string) {

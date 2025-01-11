@@ -1,11 +1,11 @@
 import { ParserRuleContext } from "antlr4";
 import { Location } from "vscode-languageserver";
-import { findParentRuleContext } from "./parseHelpers.js";
-import { CallContext, Coro_defContext, For_target_defContext, Import_stmtContext, JumpContext, Macro_callContext, MacrodefContext, OperationContext, PrimitiveContext, Simple_defContext, String_valueContext } from "./antlr/ExplorerScriptParser.js";
-import { Coroutine, Macro, resolveScopedConstant, Routine, Symbol, SymbolStore, UserConstant } from "./symbols.js";
-import { ParsedDocument } from "./server.js";
-import { findMacrosFolder, resolveImport } from "./imports.js";
-import { singlelineStringLiteral, stringLiteral } from "./utils.js";
+import { findParentRuleContext } from "./parseHelpers";
+import { CallContext, Import_stmtContext, JumpContext, Macro_callContext, MacrodefContext, OperationContext, PrimitiveContext, String_valueContext } from "./antlr/ExplorerScriptParser";
+import { resolveScopedConstant, Symbol, SymbolStore } from "./symbols";
+import { ParsedDocument } from "./server";
+import { findMacrosFolder, resolveImport } from "./imports";
+import { singlelineStringLiteral, stringLiteral } from "./utils";
 import { URI } from "vscode-uri";
 
 // Note: The order of checks is important here

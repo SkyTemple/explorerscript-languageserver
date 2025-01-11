@@ -17,42 +17,41 @@ import {
   CompletionParams,
   DidChangeConfigurationParams,
   WorkspaceFoldersChangeEvent,
-  Connection,
   WorkspaceFolder,
   HoverParams,
   DefinitionParams,
   Location
 } from 'vscode-languageserver';
+import  { createConnection } from 'vscode-languageserver/node';
 
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { CharStream, CommonTokenStream } from 'antlr4';
-import ExplorerScriptLexer from './antlr/ExplorerScriptLexer.js';
-import ExplorerScriptParser, { Macro_callContext, Message_switch_blockContext, OperationContext, PrimitiveContext, StartContext } from './antlr/ExplorerScriptParser.js';
+import ExplorerScriptLexer from './antlr/ExplorerScriptLexer';
+import ExplorerScriptParser, { Macro_callContext, Message_switch_blockContext, OperationContext, PrimitiveContext, StartContext } from './antlr/ExplorerScriptParser';
 import { URI } from 'vscode-uri';
 import { readFile } from 'fs/promises';
 import { glob } from 'glob';
 
-import { createWikiUrlForOpcode, getOpCodeSignatureInfo, getRegionalConstants, GLOBAL_OPCODE_COMPLETION_ITEMS_BY_NAME } from './data/staticData.js';
-import { findContextAtOffset, findFunctionCallAtOffset, findParentRuleContext } from './parseHelpers.js';
-import { applyConfigurationChange, DEFAULT_SETTINGS, deleteDocumentSettings, getDocumentSettings } from './settings.js';
-import { SymbolVisitor } from './visitors/symbolVisitor.js';
-import { buildMacroDetailString, CompositeSymbolStore, getMacroSignatureInfo, SymbolStore, toSymbolInformation } from './symbols.js';
-import { buildCompletionItems } from './completion.js';
+import { createWikiUrlForOpcode, getOpCodeSignatureInfo, getRegionalConstants, GLOBAL_OPCODE_COMPLETION_ITEMS_BY_NAME } from './data/staticData';
+import { findContextAtOffset, findFunctionCallAtOffset, findParentRuleContext } from './parseHelpers';
+import { applyConfigurationChange, DEFAULT_SETTINGS, deleteDocumentSettings, getDocumentSettings } from './settings';
+import { SymbolVisitor } from './visitors/symbolVisitor';
+import { buildMacroDetailString, CompositeSymbolStore, getMacroSignatureInfo, SymbolStore, toSymbolInformation } from './symbols';
+import { buildCompletionItems } from './completion';
 import chokidar, { FSWatcher } from 'chokidar';
 import { Stats } from 'fs';
-import { createCompositeSymbolStore, findScriptFolder, resolveDocumentImports } from './imports.js';
-import { RomData } from './data/romData.js';
+import { createCompositeSymbolStore, findScriptFolder, resolveDocumentImports } from './imports';
+import { RomData } from './data/romData';
 import * as path from 'path';
 
 // Create a connection for the server
 // This doesn't work with a normal import for some reason
-import { createRequire } from "module";
-import { StaticConstantStore } from './data/constantStore.js';
-import { OpCode } from './data/types.js';
-import { findDefinition } from './definitionProvider.js';
-import { StatementVisitor } from './visitors/statement.js';
-const require = createRequire(import.meta.url);
-export let connection: Connection = require('vscode-languageserver/node').createConnection(ProposedFeatures.all);
+import { StaticConstantStore } from './data/constantStore';
+import { OpCode } from './data/types';
+import { findDefinition } from './definitionProvider';
+import { StatementVisitor } from './visitors/statement';
+
+export let connection = createConnection(ProposedFeatures.all);
 
 // Create a simple text document manager
 let documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
