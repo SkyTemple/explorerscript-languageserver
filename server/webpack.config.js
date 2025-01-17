@@ -39,7 +39,7 @@ export default {
             compiler.hooks.emit.tapAsync('fixCreateRequireUrl', (compilation, callback) => {
               Object.keys(compilation.assets).forEach((filename) => {
                 let source = compilation.assets[filename].source();
-                source = source.replace(/createRequire\)\(".+"\)/g, "createRequire)(import.meta.url)");
+                source = source.replace(/createRequire\)\(".+?"\)/g, "createRequire)(import.meta.url)");
           
                 compilation.assets[filename] = {
                   source: () => source,
