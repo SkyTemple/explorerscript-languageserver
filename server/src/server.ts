@@ -113,7 +113,6 @@ const chokidarWatcherMap: Map<string, FSWatcher> = new Map();
 connection.onInitialized(async () => {
   if (hasConfigurationCapability) {
     connection.client.register(DidChangeConfigurationNotification.type, undefined);
-    connection.workspace.getConfiguration({ section: 'explorerscript' });
   }
   
   if (hasWorkspaceFolderCapability) {
@@ -139,6 +138,7 @@ connection.onInitialized(async () => {
   }
 
   const workspaceFolders = await getWorkspaceFolders();
+  await loadRomsFromConfig(false, false);
   await parseAllExpsFilesOnStartup(workspaceFolders);
   documents.all().forEach(checkDocumentAndSendDiagnostics);
 });
@@ -165,8 +165,8 @@ async function loadRom(workspaceFolderUri: string, showNotification: boolean) {
     loadedRoms.set(workspaceFolderUri, rom);
     if (showNotification) {
       connection.window.showInformationMessage(`Loaded ROM data from '${romPath}'.`);
-      connection.console.log(`Loaded ROM data from '${romPath}'. Workspace folder: ${workspaceFolderUri}`);
     }
+    connection.console.log(`Loaded ROM data from '${romPath}'. Workspace folder: ${workspaceFolderUri}`);
 
   } catch (err: any) {
     connection.window.showErrorMessage(`Error loading ROM data from '${romPath}': ${err}`);
@@ -285,22 +285,40 @@ function removeFolderFilesFromCache(folderUri: string) {
   }
 }
 
-let firstConfigChange = true;
-
 // Handle configuration changes
 connection.onDidChangeConfiguration(async (change: DidChangeConfigurationParams) => {
+  connection.console.log('Configuration changed');
+  
   applyConfigurationChange(change);
-  // Re-validate all open text documents
-  documents.all().forEach(checkDocumentAndSendDiagnostics);
+  loadRomsFromConfig(true, true);
+});
 
-  const workspaceFolders = await getWorkspaceFolders();
-  loadedRoms.clear();
-  for (const folder of workspaceFolders) {
-    await loadRom(folder.uri, !firstConfigChange);
+let loadRomsTimeout: NodeJS.Timeout | undefined;
+let pendingShowNotification = true;
+
+async function loadRomsFromConfig(showNotification: boolean, parseAllFiles: boolean) {
+  if (loadRomsTimeout) {
+    clearTimeout(loadRomsTimeout);
+    // Make sure we don't show the notification if the function was called multiple times
+    // and a previous call requested not to show it
+    pendingShowNotification = pendingShowNotification && showNotification;
+  } else {
+    pendingShowNotification = showNotification;
   }
 
-  firstConfigChange = false;
-});
+  loadRomsTimeout = setTimeout(async () => {
+    const workspaceFolders = await getWorkspaceFolders();
+    loadedRoms.clear();
+    for (const folder of workspaceFolders) {
+      await loadRom(folder.uri, pendingShowNotification);
+    }
+
+    if (parseAllFiles) {
+      documents.all().forEach(checkDocumentAndSendDiagnostics);
+    }
+    loadRomsTimeout = undefined;
+  }, 300);
+}
 
 async function onFileAdded(folderPath: string, relPath: string, stats?: Stats) {
   try {
