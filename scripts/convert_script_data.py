@@ -99,12 +99,24 @@ def convert_xml_to_json(xml_file):
                             "type": arg.attrib["type"],
                             "name": arg.attrib["name"]
                         })
+                        if arg.attrib["type"] == "PositionMark":
+                            # In the XML, PositionMark is counted as 3 arguments. This matches the SSB representation,
+                            # but the language server counts it as 1 argument.
+                            opcode_data["params"] -= 3 
                     for repeating_arg_group in op_code.findall("RepeatingArgumentGroup"):
-                        opcode_data["arguments"].append({
+                        repeating_args = {
                             "id": int(repeating_arg_group.attrib["id"]),
                             "repeating": True,
-                            "arguments": [{"type": arg.attrib["type"], "name": arg.attrib["name"]} for arg in repeating_arg_group.findall("Argument")]
-                        })
+                            "arguments": []
+                        }
+                        for arg in repeating_arg_group.findall("Argument"):
+                            repeating_args["arguments"].append({
+                                "type": arg.attrib["type"], 
+                                "name": arg.attrib["name"]
+                            })
+                            if arg.attrib["type"] == "PositionMark":
+                                opcode_data["params"] -= 3
+                        opcode_data["arguments"].append(repeating_args)
                 game_data["opCodes"].append(opcode_data)
 
         ground_state_structs = game.find(".//GroundStateStructs")
