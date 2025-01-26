@@ -6839,7 +6839,7 @@
             {
                 "id": 61,
                 "name": "camera_Move2PositionMark",
-                "params": 5,
+                "params": 2,
                 "arguments": [
                     {
                         "id": 0,
@@ -6914,7 +6914,7 @@
             {
                 "id": 66,
                 "name": "camera_Move3PositionMark",
-                "params": 5,
+                "params": 2,
                 "arguments": [
                     {
                         "id": 0,
@@ -6989,7 +6989,7 @@
             {
                 "id": 71,
                 "name": "camera_MovePositionMark",
-                "params": 5,
+                "params": 2,
                 "arguments": [
                     {
                         "id": 0,
@@ -7043,7 +7043,7 @@
             {
                 "id": 76,
                 "name": "camera_SetPositionMark",
-                "params": 4,
+                "params": 1,
                 "arguments": [
                     {
                         "id": 0,
@@ -7113,7 +7113,7 @@
             {
                 "id": 81,
                 "name": "camera2_Move2PositionMark",
-                "params": 5,
+                "params": 2,
                 "arguments": [
                     {
                         "id": 0,
@@ -7188,7 +7188,7 @@
             {
                 "id": 86,
                 "name": "camera2_Move3PositionMark",
-                "params": 5,
+                "params": 2,
                 "arguments": [
                     {
                         "id": 0,
@@ -7263,7 +7263,7 @@
             {
                 "id": 91,
                 "name": "camera2_MovePositionMark",
-                "params": 5,
+                "params": 2,
                 "arguments": [
                     {
                         "id": 0,
@@ -7317,7 +7317,7 @@
             {
                 "id": 96,
                 "name": "camera2_SetPositionMark",
-                "params": 4,
+                "params": 1,
                 "arguments": [
                     {
                         "id": 0,
@@ -8480,7 +8480,7 @@
             {
                 "id": 178,
                 "name": "Move2PositionMark",
-                "params": 5,
+                "params": 2,
                 "arguments": [
                     {
                         "id": 0,
@@ -8628,7 +8628,7 @@
             {
                 "id": 185,
                 "name": "Move3PositionMark",
-                "params": 5,
+                "params": 2,
                 "arguments": [
                     {
                         "id": 0,
@@ -8837,7 +8837,7 @@
             {
                 "id": 195,
                 "name": "MovePositionMark",
-                "params": 5,
+                "params": 2,
                 "arguments": [
                     {
                         "id": 0,
@@ -8854,7 +8854,7 @@
             {
                 "id": 196,
                 "name": "MovePositionMarkTime",
-                "params": 6,
+                "params": 3,
                 "arguments": [
                     {
                         "id": 0,
@@ -10163,7 +10163,7 @@
             {
                 "id": 262,
                 "name": "SetMoveRange",
-                "params": 6,
+                "params": 3,
                 "arguments": [
                     {
                         "id": 0,
@@ -10231,7 +10231,7 @@
             {
                 "id": 267,
                 "name": "SetPositionMark",
-                "params": 4,
+                "params": 1,
                 "arguments": [
                     {
                         "id": 0,
@@ -10372,7 +10372,7 @@
             {
                 "id": 275,
                 "name": "Slide2PositionMark",
-                "params": 5,
+                "params": 2,
                 "arguments": [
                     {
                         "id": 0,
@@ -10520,7 +10520,7 @@
             {
                 "id": 282,
                 "name": "Slide3PositionMark",
-                "params": 5,
+                "params": 2,
                 "arguments": [
                     {
                         "id": 0,
@@ -10707,7 +10707,7 @@
             {
                 "id": 291,
                 "name": "SlidePositionMark",
-                "params": 5,
+                "params": 2,
                 "arguments": [
                     {
                         "id": 0,
@@ -10724,7 +10724,7 @@
             {
                 "id": 292,
                 "name": "SlidePositionMarkTime",
-                "params": 6,
+                "params": 3,
                 "arguments": [
                     {
                         "id": 0,
@@ -11191,7 +11191,7 @@
             {
                 "id": 323,
                 "name": "SwitchDirectionMark",
-                "params": 4,
+                "params": 1,
                 "arguments": [
                     {
                         "id": 0,
@@ -11378,7 +11378,7 @@
             {
                 "id": 335,
                 "name": "Turn2DirectionMark",
-                "params": 8,
+                "params": 5,
                 "arguments": [
                     {
                         "id": 0,
@@ -11505,7 +11505,7 @@
             {
                 "id": 341,
                 "name": "TurnDirectionMark",
-                "params": 5,
+                "params": 2,
                 "arguments": [
                     {
                         "id": 0,
