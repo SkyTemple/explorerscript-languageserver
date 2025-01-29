@@ -21,6 +21,9 @@
       "include": "#keywords"
     },
     {
+      "include": "#function-call"
+    },
+    {
       "include": "#variables"
     }
   ],
@@ -139,11 +142,38 @@
         }
       ]
     },
+    "function-call": {
+			"begin": "([A-Za-z_$][\\w$]*)\\s*(\\(|<)",
+			"beginCaptures": {
+				"1": {
+					"name": "entity.name.function.exps"
+				}
+			},
+			"end": "\\)",
+			"name": "meta.function-call.exps",
+			"patterns": [
+				{
+					"include": "#strings"
+				},
+        {
+          "include": "#numbers"
+        },
+        {
+          "include": "#variables"
+        },
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#labels"
+        }
+			]
+		},
     "variables": {
       "patterns": [
         {
           "name": "variable.other.exps",
-          "match": "([\\$%]|\\b)?[a-zA-Z_][a-zA-Z0-9_]*\\b"
+          "match": "[\\$%][a-zA-Z_][a-zA-Z0-9_]*\\b"
         }
       ]
     }
