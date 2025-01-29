@@ -50,7 +50,7 @@ function buildObjectConstants(objectsList: ObjectInfo[]): ExplorerScriptStaticCo
 	for (let i = 0; i < objectsList.length; i++) {
 		const obj = objectsList[i];
 		constants.push({
-			name: `OBJECT_${obj.name}_${i}`,
+			name: `OBJECT_${obj.name.toUpperCase()}_${i}`,
 			value: i,
 			documentation: `Object (value: ${i})`,
 			type: 'object',
