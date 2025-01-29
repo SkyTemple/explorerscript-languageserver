@@ -111,7 +111,7 @@
       "patterns": [
         {
           "name": "keyword.control.exps",
-          "match": "\\b(?:import|coro|def|macro|for_actor|for_object|for_performer|alias|previous|not|if|elseif|else|forever|with|switch|debug|edit|variation|random|sector|menu2|menu|case|default|clear|reset|init|scn|dungeon_result|adventure_log|continue|break|break_loop|return|end|hold|jump|call|while|for|const)\\b"
+          "match": "\\b(?:import|coro|def|macro|for_actor|for_object|for_performer|alias|previous|not|if|elseif|else|forever|with|switch|debug|edit|variation|random|sector|menu2|menu|case|default|clear|reset|init|scn|dungeon_result|adventure_log|continue|break|break_loop|return|end|hold|jump|call|while|for|const|Position)\\b"
         },
         {
           "name": "keyword.other.exps",
