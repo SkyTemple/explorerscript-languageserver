@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "org.skytemple"
-version = "1.0-SNAPSHOT"
+version = "0.0.3"
 
 repositories {
     mavenCentral()
@@ -29,7 +29,7 @@ tasks {
     }
 
     patchPluginXml {
-        sinceBuild.set("241")
+        sinceBuild.set("243")
         untilBuild.set("243.*")
     }
 
