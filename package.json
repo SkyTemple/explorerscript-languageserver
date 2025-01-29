@@ -2,7 +2,7 @@
 	"name": "explorerscript-vscode-extension",
 	"displayName": "ExplorerScript",
 	"description": "ExplorerScript language support for VS Code",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"publisher": "techticks",
 	"license": "GPL-3.0-only",
 	"repository": {

@@ -4,6 +4,7 @@ This repository contains a [Language Server Protocol](https://microsoft.github.i
 
 ## Features
 
+- On-the-fly error checking
 - Syntax highlighting
 - Auto-complete
 - Hover hints
