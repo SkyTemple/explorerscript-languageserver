@@ -158,8 +158,9 @@ export class StatementVisitor extends ExplorerScriptVisitor<void> {
     this.visitChildren(ctx);
   }
 
-  visitAssignment_regular = (_ctx: ParserRuleContext): void => {
+  visitAssignment_regular = (ctx: ParserRuleContext): void => {
     // TODO
+    this.visitChildren(ctx);
   }
 
   visitAssignment_clear = (_ctx: ParserRuleContext): void => {
