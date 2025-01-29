@@ -52,7 +52,7 @@ export class PrimitiveCompileHandler implements CompileHandler<PrimitiveContext>
 		}
 
 		// Find a matching game variable
-		const gameVar = this._compilerContext.staticConstants.byName.get(name);
+		const gameVar = this._compilerContext.staticConstants.byName.get('$' + name);
 		if (!gameVar || gameVar.type !== 'variable') {
 			return [diagnosticForContext(
 				ctx,
